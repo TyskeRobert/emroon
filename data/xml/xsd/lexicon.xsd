@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.emroon.no/ns/lexicon"
+	xmlns="http://www.emroon.no/ns/lexicon"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:element name="lexicon">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="lemma" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="form" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="m" type="morphemeId" minOccurs="1" maxOccurs="unbounded"/>
+										<xs:element name="normRend" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="standard" type="standardID" use="required"/>
+												<xs:attribute name="form" type="formId" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="id" type="formId" use="required"/>
+									<xs:attribute name="norm" type="xs:string" use="required"/>
+									<xs:attribute name="morph" type="morph" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="lemmaId" use="required"/>
+						<xs:attribute name="entry" type="xs:string" use="required"/>
+						<xs:attribute name="entryID" type="formId" use="required"/>
+						<xs:attribute name="pos" type="partOfSpeech" use="required"/>
+						<xs:attribute name="gloss" type="xs:string" use="optional"/>
+						<xs:attribute name="onp-id" type="onpId" use="optional"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="partOfSpeech">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="aj"/>	<!-- für Adjektive -->
+			<xs:enumeration value="ap"/>	<!-- für Prä- und Postpositionen -->
+			<xs:enumeration value="aq"/>	<!-- für Frageadverbien -->
+			<xs:enumeration value="av"/>	<!-- für Adverbien -->	
+			<xs:enumeration value="cc"/>	<!-- für Konjunktionen -->
+			<xs:enumeration value="cs"/>	<!-- für Subjunktionen -->
+			<xs:enumeration value="dd"/>	<!-- für Demonstrativbegleiter -->
+			<xs:enumeration value="dp"/>	<!-- für Possessivbegleiter -->
+			<xs:enumeration value="dq"/>	<!-- für Quantitativbegleiter -->
+			<xs:enumeration value="ex"/>	<!-- für Exklamative Partikeln -->
+			<xs:enumeration value="im"/>	<!-- für den Infinitivmarker -->
+			<xs:enumeration value="nc.f"/>	<!-- für Feminina -->
+			<xs:enumeration value="nc.m"/>	<!-- für Maskulina -->
+			<xs:enumeration value="nc.n"/>	<!-- für Neutra -->
+			<xs:enumeration value="nc.x"/>	<!-- für Substantiven mit unklarem Genus -->
+			<xs:enumeration value="np.f"/>	<!-- für weibliche Eigennamen -->
+			<xs:enumeration value="np.m"/>	<!-- für männliche Eigennamen -->
+			<xs:enumeration value="np.n"/>	<!-- für sächliche Eigennamen -->
+			<xs:enumeration value="pe"/>	<!-- für Personalpronomina -->
+			<xs:enumeration value="pi"/>	<!-- für Indefinitpronomina -->
+			<xs:enumeration value="pq"/>	<!-- für Interrogativpronomina -->
+			<xs:enumeration value="vb.a"/>	<!-- für aktive Verben -->
+			<xs:enumeration value="vb.r"/>	<!-- für mediale Verben -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="morph">
+		<xs:restriction base="xs:string">
+			<!-- non-inflecting -->
+			<xs:enumeration value="---------"/>
+			<!-- infinitives -->
+			<xs:enumeration value="is-------"/> <!-- (at) vera -->
+			<xs:enumeration value="is-1--p--"/> <!-- (vér munum) sjámk -->
+			<xs:enumeration value="it-------"/> <!-- (hann sagðisk) mundu (vera) -->
+			<xs:enumeration value="s--------"/> <!-- (hann hefir) verit -->
+			<!-- indicative present -->
+			<xs:enumeration value="fsi1--s--"/> <!-- (ek) em -->
+			<xs:enumeration value="fsi2--s--"/> <!-- (þú) ert -->
+			<xs:enumeration value="fsi3--s--"/> <!-- (hann) er -->
+			<xs:enumeration value="fsi1--p--"/> <!-- (vér) erum -->
+			<xs:enumeration value="fsi2--p--"/> <!-- (þér) eruð -->
+			<xs:enumeration value="fsi3--p--"/> <!-- (þeir) eru -->
+			<!-- optative present -->
+			<xs:enumeration value="fso1--s--"/>	<!-- (nema ek) sjá -->
+			<xs:enumeration value="fso2--s--"/> <!-- (nema þú) sér -->
+			<xs:enumeration value="fso3--s--"/> <!-- (nema hann) sé -->
+			<xs:enumeration value="fso1--p--"/> <!-- (nema vér) sém -->
+			<xs:enumeration value="fso2--p--"/> <!-- (nema þér) séð -->
+			<xs:enumeration value="fso3--p--"/> <!-- (nema þeir) sé -->
+			<!-- imperative -->
+			<xs:enumeration value="fsp2--s--"/> <!-- ver (þú) -->
+			<xs:enumeration value="fsp1--p--"/>	<!-- verum (vér) -->
+			<xs:enumeration value="fsp2--p--"/> <!-- verið (þér) -->
+			<!-- indicative preterite -->
+			<xs:enumeration value="fti1--s--"/> <!-- (ek) var -->
+			<xs:enumeration value="fti2--s--"/> <!-- (þú) vart -->
+			<xs:enumeration value="fti3--s--"/> <!-- (hann) var -->
+			<xs:enumeration value="fti1--p--"/> <!-- (vér) várum -->
+			<xs:enumeration value="fti2--p--"/> <!-- (þér) váruð -->
+			<xs:enumeration value="fti3--p--"/> <!-- (þeir) váru -->
+			<!-- optative preterite -->
+			<xs:enumeration value="fto1--s--"/> <!-- (nema ek) vǽra -->
+			<xs:enumeration value="fto2--s--"/> <!-- (nema þú) vǽrir -->
+			<xs:enumeration value="fto3--s--"/> <!-- (nema hann) vǽri -->
+			<xs:enumeration value="fto1--p--"/> <!-- (nema vér) vǽrim -->
+			<xs:enumeration value="fto2--p--"/> <!-- (nema þér) vǽrið -->
+			<xs:enumeration value="fto3--p--"/> <!-- (nema þeir) vǽri -->
+			<!-- resultative positive strong masculine singular -->
+			<xs:enumeration value="r---pmsni"/> <!-- (hann er) kallaðr -->
+			<xs:enumeration value="r---pmsgi"/> <!-- (til) kallaðs (manns) -->
+			<xs:enumeration value="r---pmsdi"/> <!-- (frá) kölluðum (manni) -->
+			<xs:enumeration value="r---pmsai"/> <!-- (um) kallaðan (mann) -->
+			<!-- resultative positive strong feminine singular -->
+			<xs:enumeration value="r---pfsni"/> <!-- (hon er) kölluð -->
+			<xs:enumeration value="r---pfsgi"/> <!-- (til) kallaðrar (konu) -->
+			<xs:enumeration value="r---pfsdi"/> <!-- (frá) kallaðri (konu) -->
+			<xs:enumeration value="r---pfsai"/> <!-- (um) kallaða (konu) -->
+			<!-- resultative positive strong neuter singular -->
+			<xs:enumeration value="r---pnsni"/> <!-- (þat er) kallat -->
+			<xs:enumeration value="r---pnsgi"/> <!-- (til) kallaðs (barns) -->
+			<xs:enumeration value="r---pnsdi"/> <!-- (frá) kölluðu (barni) -->
+			<xs:enumeration value="r---pnsai"/> <!-- (um) kallat (barn) -->
+			<!-- resultative positive strong masculine plural -->
+			<xs:enumeration value="r---pmpni"/> <!-- (þeir eru) kallaðir -->
+			<xs:enumeration value="r---pmpai"/> <!-- (um) kallaða (menn) -->
+			<!-- resultative positive strong feminine plural -->
+			<xs:enumeration value="r---pfpni"/> <!-- (þǽr eru) kallaðar -->
+			<xs:enumeration value="r---pfpai"/> <!-- (um) kallaðar (konur) -->
+			<!-- resultative positive strong neuter plural -->
+			<xs:enumeration value="r---pnpni"/> <!-- (þau eru) kölluð -->
+			<xs:enumeration value="r---pnpai"/> <!-- (um) kölluð (börn) -->
+			<!-- resultative positive strong unspecified plural -->
+			<xs:enumeration value="r---pxpgi"/> <!-- (til) kallaðra (manna) -->
+			<xs:enumeration value="r---pxpdi"/> <!-- (frá) kölluðum (mönnum) -->
+			<!-- resultative positive weak masculine singular -->
+			<xs:enumeration value="r---pmsnd"/> <!-- (hér er hinn) kallaði (maðr) -->
+			<xs:enumeration value="r---pmsgd"/> <!-- (til hins) kallaða (manns) -->
+			<xs:enumeration value="r---pmsdd"/> <!-- (frá hinum) kallaða (manni) -->
+			<xs:enumeration value="r---pmsad"/> <!-- (um hinn) kallaða (mann) -->
+			<!-- resultative positive weak feminine singular -->
+			<xs:enumeration value="r---pfsnd"/> <!-- (hér er hin) kallaða (kona) -->
+			<xs:enumeration value="r---pfsdd"/> <!-- (frá hinni) kölluðu (konu) -->
+			<!-- resultative positive weak neuter singular -->
+			<xs:enumeration value="r---pnsnd"/> <!-- (hér er hit) kallaða (barn) -->
+			<xs:enumeration value="r---pnsad"/> <!-- (um hit) kallaða (barn) -->
+			<!-- resultative comparative masculine singular -->
+			<xs:enumeration value="r---cmsnd"/> <!-- (hann er) haldnari -->
+			<xs:enumeration value="r---cmsgd"/> <!-- (til) haldnara (manns) -->
+			<xs:enumeration value="r---cmsdd"/> <!-- (frá) haldnara (manni) -->
+			<xs:enumeration value="r---cmsad"/> <!-- (um) haldnara (mann) -->
+			<!-- resultative comparative feminine singular -->
+			<xs:enumeration value="r---cfsnd"/> <!-- (hon er) haldnari -->
+			<xs:enumeration value="r---cfsgd"/> <!-- (til) haldnari (konu) -->
+			<xs:enumeration value="r---cfsdd"/> <!-- (frá) haldnari (konu) -->
+			<xs:enumeration value="r---cfsad"/> <!-- (um) haldnari (konu) -->
+			<!-- resultative comparative neuter singular -->
+			<xs:enumeration value="r---cnsnd"/> <!-- (þat er) haldnara -->
+			<xs:enumeration value="r---cnsgd"/> <!-- (til) haldnara (barns) -->
+			<xs:enumeration value="r---cnsdd"/> <!-- (frá) haldnara (barni) -->
+			<xs:enumeration value="r---cnsad"/> <!-- (um) haldnara (barn) -->
+			<!-- resultative comparative plural -->
+			<xs:enumeration value="r---cxpnd"/> <!-- (hér eru) haldnari (menn) -->
+			<xs:enumeration value="r---cxpgd"/> <!-- (til) haldnari (manna) -->
+			<xs:enumeration value="r---cxpdd"/> <!-- (frá) hǫldnurum (mönnum) -->
+			<xs:enumeration value="r---cxpad"/> <!-- (um) haldnari (menn) -->
+			<!-- resultative superlative strong masculine singular -->
+			<xs:enumeration value="r---smsni"/> <!-- (hann er) haldnastr -->
+			<xs:enumeration value="r---smsgi"/> <!-- (til) haldnasts (manns) -->
+			<xs:enumeration value="r---smsdi"/> <!-- (frá) hǫldnustum (manni) -->
+			<xs:enumeration value="r---smsai"/> <!-- (um) haldnastan (mann) -->
+			<!-- resultative superlative strong feminine singular -->
+			<xs:enumeration value="r---sfsni"/> <!-- (hon er) hǫldnust -->
+			<xs:enumeration value="r---sfsgi"/> <!-- (til) haldnastrar (konu) -->
+			<xs:enumeration value="r---sfsdi"/> <!-- (frá) haldnastri (konu) -->
+			<xs:enumeration value="r---sfsai"/> <!-- (um) haldnasta (konu) -->
+			<!-- resultative superlative strong neuter singular -->
+			<xs:enumeration value="r---snsni"/> <!-- (þat er) haldnast -->
+			<xs:enumeration value="r---snsgi"/> <!-- (til) haldnasts (barns) -->
+			<xs:enumeration value="r---snsdi"/> <!-- (frá) hǫldnustu (barni) -->
+			<xs:enumeration value="r---snsai"/> <!-- (um) haldnast (barn) -->
+			<!-- resultative superlative strong masculine plural -->
+			<xs:enumeration value="r---smpni"/> <!-- (þeir eru) haldnastir -->
+			<xs:enumeration value="r---smpai"/> <!-- (um) haldnasta (menn) -->
+			<!-- resultative superlative strong feminine plural -->
+			<xs:enumeration value="r---sfpni"/> <!-- (þǽr eru) haldnastar -->
+			<xs:enumeration value="r---sfpai"/> <!-- (um) haldnastar (konur) -->
+			<!-- resultative superlative strong neuter plural -->
+			<xs:enumeration value="r---snpni"/> <!-- (þau eru) hǫldnust -->
+			<xs:enumeration value="r---snpai"/> <!-- (um) hǫldnust (börn) -->
+			<!-- resultative superlative strong unspecified plural -->
+			<xs:enumeration value="r---sxpgi"/> <!-- (til) haldnastra (manna) -->
+			<xs:enumeration value="r---sxpdi"/> <!-- (frá) hǫldnustum (mönnum) -->
+			<!-- resultative superlative weak masculine singular -->
+			<xs:enumeration value="r---smsnd"/> <!-- (hér er hinn) haldnasti (maðr) -->
+			<xs:enumeration value="r---smsgd"/> <!-- (til hins) haldnasta (manns) -->
+			<xs:enumeration value="r---smsdd"/> <!-- (frá hinum) haldnasta (manni) -->
+			<xs:enumeration value="r---smsad"/> <!-- (um hinn) haldnasta (mann) -->
+			<!-- resultative superlative weak feminine singular -->
+			<xs:enumeration value="r---sfsnd"/> <!-- (hér er hin) haldnasta (kona) -->
+			<xs:enumeration value="r---sfsgd"/> <!-- (til hinnar) hǫldnustu (konu) -->
+			<xs:enumeration value="r---sfsdd"/> <!-- (frá hinni) hǫldnustu (konu) -->
+			<xs:enumeration value="r---sfsad"/> <!-- (um hina) hǫldnustu (konu) -->
+			<!-- resultative superlative weak neuter singular -->
+			<xs:enumeration value="r---snsnd"/> <!-- (hér er hit) haldnasta (barn) -->
+			<xs:enumeration value="r---snsgd"/> <!-- (til hins) haldnasta (barns) -->
+			<xs:enumeration value="r---snsdd"/> <!-- (frá hinu) haldnasta (barni) -->
+			<xs:enumeration value="r---snsad"/> <!-- (um hit) haldnasta (barn) -->
+			<!-- resultative superlative weak plural -->
+			<xs:enumeration value="r---sxpnd"/> <!-- (hér eru hinir) hǫldnustu (menn) -->
+			<xs:enumeration value="r---sxpgd"/> <!-- (til hinna) hǫldnustu (manna) -->
+			<xs:enumeration value="r---sxpdd"/> <!-- (frá hinum) hǫldnustum (mönnum) -->
+			<xs:enumeration value="r---sxpad"/> <!-- (um hina) hǫldnustu (menn) -->
+			<!-- resultative equative strong masculine singular -->
+			<xs:enumeration value="r---emsni"/> <!-- (hann er) jafnhaldinn -->
+			<xs:enumeration value="r---emsgi"/> <!-- (til) jafnhaldins (manns) -->
+			<xs:enumeration value="r---emsdi"/> <!-- (frá) jafnhǫldnum (manni) -->
+			<xs:enumeration value="r---emsai"/> <!-- (um) jafnhaldinn (mann) -->
+			<!-- resultative equative strong feminine singular -->
+			<xs:enumeration value="r---efsni"/> <!-- (hon er) jafnhaldin -->
+			<xs:enumeration value="r---efsgi"/> <!-- (til) jafnhaldinnar (konu) -->
+			<xs:enumeration value="r---efsdi"/> <!-- (frá) jafnhaldinni (konu) -->
+			<xs:enumeration value="r---efsai"/> <!-- (um) jafnhaldna (konu) -->
+			<!-- resultative equative strong neuter singular -->
+			<xs:enumeration value="r---ensni"/> <!-- (þat er) jafnhaldit -->
+			<xs:enumeration value="r---ensgi"/> <!-- (til) jafnhaldins (barns) -->
+			<xs:enumeration value="r---ensdi"/> <!-- (frá) jafnhǫldnu (barni) -->
+			<xs:enumeration value="r---ensai"/> <!-- (um) jafnhaldit (barn) -->
+			<!-- resultative equative strong masculine plural -->
+			<xs:enumeration value="r---empni"/> <!-- (þeir eru) jafnhaldnir -->
+			<xs:enumeration value="r---empai"/> <!-- (um) jafnhaldna (menn) -->
+			<!-- resultative equative strong feminine plural -->
+			<xs:enumeration value="r---efpni"/> <!-- (þǽr eru) jafnhaldnar -->
+			<xs:enumeration value="r---efpai"/> <!-- (um) jafnhaldnar (konur) -->
+			<!-- resultative equative strong neuter plural -->
+			<xs:enumeration value="r---enpni"/> <!-- (þau eru) jafnhaldin -->
+			<xs:enumeration value="r---enpai"/> <!-- (um) jafnhaldin (bǫrn) -->
+			<!-- resultative equative strong unspecified plural -->
+			<xs:enumeration value="----expgi"/> <!-- (til) jafnhaldinna (manna) -->
+			<xs:enumeration value="----expdi"/> <!-- (frá) jafnhǫldnum (mǫnnum) -->
+			<!-- participle masculine singular -->
+			<xs:enumeration value="p----msnd"/> <!-- (hann er) farandi -->
+			<xs:enumeration value="p----msgd"/> <!-- (til) faranda (manns) -->
+			<xs:enumeration value="p----msdd"/> <!-- (frá) faranda (manni) -->
+			<xs:enumeration value="p----msad"/> <!-- (um) faranda (mann) -->
+			<!-- participle feminine singular -->
+			<xs:enumeration value="p----fsnd"/> <!-- (hon er) farandi -->
+			<!-- participle neuter singular -->
+			<xs:enumeration value="p----nsnd"/> <!-- (barnit er) faranda -->
+			<xs:enumeration value="p----nsgd"/> <!-- (til) faranda (barns) -->
+			<xs:enumeration value="p----nsdd"/> <!-- (frá) faranda (barni) -->
+			<xs:enumeration value="p----nsad"/> <!-- (um) faranda (barn) -->
+			<!-- participle plural -->
+			<xs:enumeration value="p----xpnd"/> <!-- (þeir eru) farandi -->
+			<xs:enumeration value="p----xpgd"/> <!-- (til) farandi (manna) -->
+			<xs:enumeration value="p----xpdd"/> <!-- (frá) farandi? (mönnum) -->
+			<xs:enumeration value="p----xpad"/> <!-- (um) farandi (menn) -->
+			<!-- gerundive masculine singular -->
+			<xs:enumeration value="g----msnd"/> <!-- (matrinn er) etandi -->
+			<!-- gerundive feminine singular -->
+			<xs:enumeration value="g----fsnd"/> <!-- (hnotin er) etandi -->
+			<!-- gerundive neuter singular -->
+			<xs:enumeration value="g----nsnd"/> <!-- (brauðit er) etanda -->
+			<!-- gerundive plural -->
+			<xs:enumeration value="g----xpnd"/> <!-- (brauðin eru) etandi -->
+			<!-- personal pronouns -->
+			<xs:enumeration value="-------n-"/> <!-- (hér er) hon -->
+			<xs:enumeration value="-------g-"/> <!-- (til) hennar -->
+			<xs:enumeration value="-------d-"/> <!-- (frá) henni -->
+			<xs:enumeration value="-------a-"/> <!-- (um) hana -->
+			<!-- masculine singular -->
+			<xs:enumeration value="-----msn-"/> <!-- (hér er) annarr (maðr) -->
+			<xs:enumeration value="-----msg-"/> <!-- (til) annars (manns) -->
+			<xs:enumeration value="-----msd-"/> <!-- (frá) öðrum (manni) -->
+			<xs:enumeration value="-----msa-"/> <!-- (um) annan (mann) -->
+			<!-- feminine singular -->
+			<xs:enumeration value="-----fsn-"/> <!-- (hér er) önnur (kona) -->
+			<xs:enumeration value="-----fsg-"/> <!-- (til) annarrar (konu) -->
+			<xs:enumeration value="-----fsd-"/> <!-- (frá) annarri (konu) -->
+			<xs:enumeration value="-----fsa-"/> <!-- (um) aðra (konu) -->
+			<!-- neuter singular -->
+			<xs:enumeration value="-----nsn-"/> <!-- (hér er) annat (barn) -->
+			<xs:enumeration value="-----nsg-"/> <!-- (til) annars (barns) -->
+			<xs:enumeration value="-----nsd-"/> <!-- (frá) öðru (barni) -->
+			<xs:enumeration value="-----nsa-"/> <!-- (um) annat (barn) -->
+			<!-- masculine plural -->
+			<xs:enumeration value="-----mpn-"/> <!-- (hér eru) aðrir (menn) -->
+			<xs:enumeration value="-----mpa-"/> <!-- (um) aðra (menn) -->
+			<!-- feminine plural -->
+			<xs:enumeration value="-----fpn-"/> <!-- (hér eru) aðrar (konur) -->
+			<xs:enumeration value="-----fpa-"/> <!-- (um) aðrar (konur) -->
+			<!-- neuter plural -->
+			<xs:enumeration value="-----npn-"/> <!-- (hér eru) önnur (börn) -->
+			<xs:enumeration value="-----npa-"/> <!-- (um) önnur (börn) -->
+			<!-- unspecified plural -->
+			<xs:enumeration value="-----xpn-"/> <!-- (her eru) hinu (beztu menn) -->
+			<xs:enumeration value="-----xpd-"/> <!-- (frá) öðrum (mönnum) -->
+			<xs:enumeration value="-----xpg-"/> <!-- (til) annarra (manna) -->
+			<xs:enumeration value="-----xpa-"/> <!-- (um) hinu (beztu menn) -->
+			<!-- numerals -->
+			<xs:enumeration value="-----xpx-"/> <!-- fimm (menn) -->
+			<!-- non-inflecting adjectives -->
+			<xs:enumeration value="----pxxxx"/> <!-- (þat er) allskonar (folk) -->
+			<!-- positive strong masculine singular -->
+			<xs:enumeration value="----pmsni"/> <!-- (hér er) góðr (maðr) -->
+			<xs:enumeration value="----pmsgi"/> <!-- (til) góðs (manns) -->
+			<xs:enumeration value="----pmsdi"/> <!-- (frá) góðum (manni) -->
+			<xs:enumeration value="----pmsai"/> <!-- (um) góðan (mann) -->
+			<!-- positive strong feminine singular -->
+			<xs:enumeration value="----pfsni"/> <!-- (hér er) góð (kona) -->
+			<xs:enumeration value="----pfsgi"/> <!-- (til) góðrar (konu) -->
+			<xs:enumeration value="----pfsdi"/> <!-- (frá) góðri (konu) -->
+			<xs:enumeration value="----pfsai"/> <!-- (um) góða (konu) -->
+			<!-- positive strong neuter singular -->
+			<xs:enumeration value="----pnsni"/> <!-- (hér er) gott (barn) -->
+			<xs:enumeration value="----pnsgi"/> <!-- (til) góðs (barns) -->
+			<xs:enumeration value="----pnsdi"/> <!-- (frá) góðu (barni) -->
+			<xs:enumeration value="----pnsai"/> <!-- (um) gott (barn) -->
+			<!-- positive strong masculine plural -->
+			<xs:enumeration value="----pmpni"/> <!-- (þeir eru) góðir -->
+			<xs:enumeration value="----pmpai"/> <!-- (um) góða (menn) -->
+			<!-- positive strong feminine plural -->
+			<xs:enumeration value="----pfpni"/> <!-- (þǽr eru) góðar -->
+			<xs:enumeration value="----pfpai"/> <!-- (um) góðar (konur) -->
+			<!-- positive strong neuter plural -->
+			<xs:enumeration value="----pnpni"/> <!-- (þau eru) góð -->
+			<xs:enumeration value="----pnpai"/> <!-- (um) góð (börn) -->
+			<!-- positive strong unspecified plural -->
+			<xs:enumeration value="----pxpgi"/> <!-- (til) góðra (manna) -->
+			<xs:enumeration value="----pxpdi"/> <!-- (frá) góðum (mönnum) -->
+			<!-- positive weak masculine singular -->
+			<xs:enumeration value="----pmsnd"/> <!-- (hér er hinn) góði (maðr) -->
+			<xs:enumeration value="----pmsgd"/> <!-- (til hins) góða (manns) -->
+			<xs:enumeration value="----pmsdd"/> <!-- (frá hinum) góða (manni) -->
+			<xs:enumeration value="----pmsad"/> <!-- (um hinn) góða (mann) -->
+			<!-- positive weak feminine singular -->
+			<xs:enumeration value="----pfsnd"/> <!-- (hér er hin) góða (kona) -->
+			<xs:enumeration value="----pfsgd"/> <!-- (til hinnar) góðu (konu) -->
+			<xs:enumeration value="----pfsdd"/> <!-- (frá hinni) góðu (konu) -->
+			<xs:enumeration value="----pfsad"/> <!-- (um hina) góðu (konu) -->
+			<!-- positive weak neuter singular -->
+			<xs:enumeration value="----pnsnd"/> <!-- (hér er hit) góða (barn) -->
+			<xs:enumeration value="----pnsgd"/> <!-- (til gins) góða (barns) -->
+			<xs:enumeration value="----pnsdd"/> <!-- (frá hinu) góða (barni) -->
+			<xs:enumeration value="----pnsad"/> <!-- (um hit) góða (barn) -->
+			<!-- positive weak plural -->
+			<xs:enumeration value="----pxpnd"/> <!-- (hér eru hinir) góðu (menn) -->
+			<xs:enumeration value="----pxpgd"/> <!-- (til hinna) góðra (manna) -->
+			<xs:enumeration value="----pxpdd"/> <!-- (frá hinum) góðum (mönnum) -->
+			<xs:enumeration value="----pxpad"/> <!-- (um hina) góðu (menn) -->
+			<!-- comparative masculine singular -->
+			<xs:enumeration value="----cmsnd"/> <!-- (hann er) betri -->
+			<xs:enumeration value="----cmsgd"/> <!-- (til) betra (manns) -->
+			<xs:enumeration value="----cmsdd"/> <!-- (frá) betra (manni) -->
+			<xs:enumeration value="----cmsad"/> <!-- (um) betra (mann) -->
+			<!-- comparative feminine singular -->
+			<xs:enumeration value="----cfsnd"/> <!-- (hon er) betri -->
+			<xs:enumeration value="----cfsgd"/> <!-- (til) betri (konu) -->
+			<xs:enumeration value="----cfsdd"/> <!-- (frá) betri (konu) -->
+			<xs:enumeration value="----cfsad"/> <!-- (um) betri (konu) -->
+			<!-- comparative neuter singular -->
+			<xs:enumeration value="----cnsnd"/> <!-- (þat er) betra -->
+			<xs:enumeration value="----cnsgd"/> <!-- (til) betra (barns) -->
+			<xs:enumeration value="----cnsdd"/> <!-- (frá) betra (barni) -->
+			<xs:enumeration value="----cnsad"/> <!-- (um) betra (barn) -->
+			<!-- comparative plural -->
+			<xs:enumeration value="----cxpnd"/> <!-- (hér eru) betri (menn) -->
+			<xs:enumeration value="----cxpgd"/> <!-- (til) betri (manna) -->
+			<xs:enumeration value="----cxpdd"/> <!-- (frá) betrum (mönnum) -->
+			<xs:enumeration value="----cxpad"/> <!-- (um) betri (menn) -->
+			<!-- superlative strong masculine singular -->
+			<xs:enumeration value="----smsni"/> <!-- (hann er) beztr -->
+			<xs:enumeration value="----smsgi"/> <!-- (til) bezts (manns) -->
+			<xs:enumeration value="----smsdi"/> <!-- (frá) beztum (manni) -->
+			<xs:enumeration value="----smsai"/> <!-- um beztan mann -->
+			<!-- superlative strong feminine singular -->
+			<xs:enumeration value="----sfsni"/> <!-- (hon er) bezt -->
+			<xs:enumeration value="----sfsgi"/> <!-- (til) beztrar (konu) -->
+			<xs:enumeration value="----sfsdi"/> <!-- (frá) beztri (konu) -->
+			<xs:enumeration value="----sfsai"/> <!-- (um) bezta (konu) -->
+			<!-- superlative strong neuter singular -->
+			<xs:enumeration value="----snsni"/> <!-- (þat er) bezt -->
+			<xs:enumeration value="----snsdi"/> <!-- (frá) beztu (barni) -->
+			<xs:enumeration value="----snsai"/> <!-- (um) bezt (barn) -->
+			<!-- superlative strong masculine plural -->
+			<xs:enumeration value="----smpni"/> <!-- (þeir eru) beztir -->
+			<xs:enumeration value="----smpai"/> <!-- (um) bezta (menn) -->
+			<!-- superlative strong feminine plural -->
+			<xs:enumeration value="----sfpni"/> <!-- (þǽr eru) beztar -->
+			<xs:enumeration value="----sfpai"/> <!-- (um) beztar (konur) -->
+			<!-- superlative strong neuter plural -->
+			<xs:enumeration value="----snpni"/> <!-- (þau eru) bezt -->
+			<xs:enumeration value="----snpai"/> <!-- (um) bezt (börn) -->
+			<!-- superlative strong unspecified plural -->
+			<xs:enumeration value="----sxpgi"/> <!-- (til) beztra (manna) -->
+			<xs:enumeration value="----sxpdi"/> <!-- (frá) beztum (mönnum) -->
+			<!-- superlative weak masculine singular -->
+			<xs:enumeration value="----smsnd"/> <!-- (hér er hinn) bezti (maðr) -->
+			<xs:enumeration value="----smsgd"/> <!-- (til hins) bezta (manns) -->
+			<xs:enumeration value="----smsdd"/> <!-- (frá hinum) bezta (manni) -->
+			<xs:enumeration value="----smsad"/> <!-- (um hinn) bezta (mann) -->
+			<!-- superlative weak feminine singular -->
+			<xs:enumeration value="----sfsnd"/> <!-- (hér er hin) bezta (kona) -->
+			<xs:enumeration value="----sfsgd"/> <!-- (til hinnar) beztu (konu) -->
+			<xs:enumeration value="----sfsdd"/> <!-- (frá hinni) beztu (konu) -->
+			<xs:enumeration value="----sfsad"/> <!-- (um hina) beztu (konu) -->
+			<!-- superlative weak neuter singular -->
+			<xs:enumeration value="----snsnd"/> <!-- (hér er hit) bezta (barn) -->
+			<xs:enumeration value="----snsgd"/> <!-- (til hins) bezta (barns) -->
+			<xs:enumeration value="----snsdd"/> <!-- (frá hinu) bezta (barni) -->
+			<xs:enumeration value="----snsad"/> <!-- (um hit) bezta (barn) -->
+			<!-- superlative weak plural -->
+			<xs:enumeration value="----sxpnd"/> <!-- (hér eru hinir) beztu (menn) -->
+			<xs:enumeration value="----sxpgd"/> <!-- (til hinna) beztu (manna) -->
+			<xs:enumeration value="----sxpdd"/> <!-- (frá hinum) beztum (mönnum) -->
+			<xs:enumeration value="----sxpad"/> <!-- (um hina) beztu (menn) -->
+			<!-- equative strong masculine singular -->
+			<xs:enumeration value="----emsni"/> <!-- (hann er) jafngóðr -->
+			<xs:enumeration value="----emsgi"/> <!-- (til) jafngóðs (manns) -->
+			<xs:enumeration value="----emsdi"/> <!-- (frá) jafngóðum (manni) -->
+			<xs:enumeration value="----emsai"/> <!-- (um) jafngóðan (mann) -->
+			<!-- equative strong feminine singular -->
+			<xs:enumeration value="----efsni"/> <!-- (hon er) jafngóð -->
+			<xs:enumeration value="----efsgi"/> <!-- (til) jafngóðrar (konu) -->
+			<xs:enumeration value="----efsdi"/> <!-- (frá) jafngódri (konu) -->
+			<xs:enumeration value="----efsai"/> <!-- (um) jafngóða (konu) -->
+			<!-- equative strong neuter singular -->
+			<xs:enumeration value="----ensni"/> <!-- (þat er) jafngott -->
+			<xs:enumeration value="----ensgi"/> <!-- (til) jafngóðs (barns) -->
+			<xs:enumeration value="----ensdi"/> <!-- (frá) jafngóðu (barni) -->
+			<xs:enumeration value="----ensai"/> <!-- (um) jafngott (barn) -->
+			<!-- equative strong masculine plural -->
+			<xs:enumeration value="----empni"/> <!-- (þeir eru) jafngóðir -->
+			<xs:enumeration value="----empai"/> <!-- (um) jafngóða (menn) -->
+			<!-- equative strong feminine plural -->
+			<xs:enumeration value="----efpni"/> <!-- (þǽr eru) jafngóðar -->
+			<xs:enumeration value="----efpai"/> <!-- (um) jafngóðar (konur) -->
+			<!-- equative strong neuter plural -->
+			<xs:enumeration value="----enpni"/> <!-- (þau eru) jafngóð -->
+			<xs:enumeration value="----enpai"/> <!-- (um) jafngóð (bǫrn) -->
+			<!-- equative strong unspecified plural -->
+			<xs:enumeration value="----expgi"/> <!-- (til) jafngóðra (manna) -->
+			<xs:enumeration value="----expdi"/> <!-- (frá) jafngóðum (mǫnnum) -->
+			<!-- adverbs -->
+			<xs:enumeration value="----p----"/> <!-- (þat gengr) vel -->
+			<xs:enumeration value="----c----"/> <!-- (þat gengr) betr -->
+			<xs:enumeration value="----s----"/> <!-- (þat gengr) bezt -->
+			<xs:enumeration value="----e----"/> <!-- (þat gengr) jafnvel -->
+			<!-- indefinite singular -->
+			<xs:enumeration value="------sni"/> <!-- (hér er) maðr -->
+			<xs:enumeration value="------sgi"/> <!-- (til) manns -->
+			<xs:enumeration value="------sdi"/> <!-- (frá) manni -->
+			<xs:enumeration value="------sai"/> <!-- (um) mann -->
+			<!-- indefinite plural -->
+			<xs:enumeration value="------pni"/> <!-- (hér eru) menn -->
+			<xs:enumeration value="------pgi"/> <!-- (til) manna -->
+			<xs:enumeration value="------pdi"/> <!-- (frá) mönnum -->
+			<xs:enumeration value="------pai"/> <!-- (um) menn -->
+			<!-- definite singular -->
+			<xs:enumeration value="------snd"/> <!-- (hér er) maðrinn -->
+			<xs:enumeration value="------sgd"/> <!-- (til) mannsins -->
+			<xs:enumeration value="------sdd"/> <!-- (frá) manninum -->
+			<xs:enumeration value="------sad"/>	<!-- (um) manninn -->
+			<!-- definite plural -->
+			<xs:enumeration value="------pnd"/> <!-- (hér eru) menninir -->
+			<xs:enumeration value="------pgd"/> <!-- (til) mannanna -->
+			<xs:enumeration value="------pdd"/>	<!-- (frá) mönnunum -->
+			<xs:enumeration value="------pad"/> <!-- (um) mennina -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="lemmaId">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="L\d+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="formId">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="F\d+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="morphemeId">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="M\d+|CONTR|HYPHN|JUXTA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="onpId">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="o\d+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="standardID">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MOD"/>
+			<xs:enumeration value="RKP"/>
+			<xs:enumeration value="OEH"/>
+			<xs:enumeration value="ONP"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

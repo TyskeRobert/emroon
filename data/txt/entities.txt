@@ -1,0 +1,3 @@
+<!ENTITY AEligacute "&#x01FC;"> <!-- Latin capital ligature AE with acute -->
+<!ENTITY Oogon "&#x01EA;"> <!-- Latin capital letter O with ogonek -->
+<!ENTITY oogon "&#x01EB;"> <!-- Latin small letter o with ogonek -->

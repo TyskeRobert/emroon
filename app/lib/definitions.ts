@@ -1,6 +1,9 @@
 // This file contains type definitions for your data.
 // It describes the shape of the data, and what data type each property should accept.
 // For simplicity of teaching, we're manually defining these types.
+
+import { list } from "postcss";
+
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export type User = {
   id: string;
@@ -86,3 +89,22 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+// emroon definitions:
+
+export type Lemma = {
+  id: string;
+  linkONP: string;
+  entry: string;
+  pos: 'cc' | 'vb.a';
+  forms: Array<LemmaForm>;
+}
+
+export type LemmaForm = {
+  id: string;
+  norm: {
+    ONP: string
+  };
+  morph: string;
+  lemma: Lemma;
+}
