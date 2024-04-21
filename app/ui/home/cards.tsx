@@ -1,16 +1,12 @@
 import {
-  BanknotesIcon,
-  ClockIcon,
-  UserGroupIcon,
-  InboxIcon,
+  ListBulletIcon,
+  QueueListIcon
 } from '@heroicons/react/24/outline';
 import { calibri } from '@/app/ui/fonts';
 
 const iconMap = {
-  collected: BanknotesIcon,
-  customers: UserGroupIcon,
-  pending: ClockIcon,
-  invoices: InboxIcon,
+  entries: ListBulletIcon,
+  forms: QueueListIcon
 };
 
 export default async function CardWrapper() {
@@ -37,7 +33,7 @@ export function Card({
 }: {
   title: string;
   value: number | string;
-  type: 'invoices' | 'customers' | 'pending' | 'collected';
+  type: 'entries' | 'forms';
 }) {
   const Icon = iconMap[type];
 
