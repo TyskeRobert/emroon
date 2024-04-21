@@ -4,6 +4,7 @@ import {
   ListBulletIcon,
   HomeIcon,
   BookOpenIcon,
+  MagnifyingGlassIcon
 } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -14,6 +15,7 @@ import { usePathname } from 'next/navigation';
 const links = [
   { name: 'Home', href: '/home', icon: HomeIcon },
   { name: 'Manuscripts', href: '/home/manuscripts', icon: BookOpenIcon },
+  { name: 'Search', href: '/home/search', icon: MagnifyingGlassIcon },
   { name: 'Lexicon', href: '/home/lexicon', icon: ListBulletIcon }
 ];
 
