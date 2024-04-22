@@ -9,6 +9,7 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchRevenue() {
   // Add noStore() here to prevent the response from being cached.
@@ -49,35 +50,6 @@ export async function fetchLatestInvoices() {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch the latest invoices.');
-  }
-}
-
-export async function fetchCardData() {
-  try {
-    const entriesCountPromise = sql`SELECT COUNT(*) FROM lexicon;`;
-    const formsCountPromise = sql`SELECT COUNT(*) FROM forms`;
-    /*
-    const invoiceStatusPromise = sql`SELECT
-         SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
-         SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
-         FROM invoices`;
-    */
-
-    const data = await Promise.all([
-      entriesCountPromise,
-      formsCountPromise
-    ]);
-
-    const totalEntries = Number(data[0].rows[0].count ?? '0');
-    const totalForms = Number(data[1].rows[0].count ?? '0');
-
-    return {
-      totalEntries,
-      totalForms
-    };
-  } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch card data.');
   }
 }
 
@@ -223,3 +195,42 @@ export async function getUser(email: string) {
     throw new Error('Failed to fetch user.');
   }
 }
+
+// My stuff
+
+export async function fetchCardData() {
+  try {
+    const entriesCountPromise = sql`SELECT COUNT(*) FROM lexicon;`;
+    const formsCountPromise = sql`SELECT COUNT(*) FROM forms`;
+    /*
+    const invoiceStatusPromise = sql`SELECT
+         SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
+         SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
+         FROM invoices`;
+    */
+
+    const data = await Promise.all([
+      entriesCountPromise,
+      formsCountPromise
+    ]);
+
+    const totalEntries = Number(data[0].rows[0].count ?? '0');
+    const totalForms = Number(data[1].rows[0].count ?? '0');
+
+    return {
+      totalEntries,
+      totalForms
+    };
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch card data.');
+  }
+}
+
+export async function fetchFilteredLemmata(
+  query: string,
+  currentPage: number
+) {
+  noStore();
+}
+

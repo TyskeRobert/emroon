@@ -14,9 +14,9 @@ import { usePathname } from 'next/navigation';
 // Depending on the size of the application, this would be stored in a database.
 const links = [
   { name: 'Home', href: '/home', icon: HomeIcon },
-  { name: 'Manuscripts', href: '/home/manuscripts', icon: BookOpenIcon },
-  { name: 'Search', href: '/home/search', icon: MagnifyingGlassIcon },
-  { name: 'Lexicon', href: '/home/lexicon', icon: ListBulletIcon }
+  { name: 'Manuscripts', href: '/manuscripts', icon: BookOpenIcon },
+  { name: 'Search', href: '/search', icon: MagnifyingGlassIcon },
+  { name: 'Lexicon', href: '/lexicon', icon: ListBulletIcon }
 ];
 
 export default function NavLinks() {
