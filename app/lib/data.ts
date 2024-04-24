@@ -225,6 +225,40 @@ export async function fetchLexiconPages(query: string) {
   }
 }
 
+export async function fetchLemma(id: string) {
+  try {
+    const rawLemma = await sql`
+      SELECT * 
+      FROM lexicon
+      WHERE id=${id};
+    `;
+    /*const rawForms = await sql`
+      SELECT *
+      FROM forms
+      WHERE lemmaId='${id}';
+    `;*/
+
+    const lemma = {
+      id,
+      entry: rawLemma.rows[0].entry,
+      pos: rawLemma.rows[0].pos,
+      linkONP: rawLemma.rows[0].linkonp,
+      /*forms: rawForms.rows.map(form => {
+        return {
+          id: form.id,
+          norm: form.norm,
+          morph: form.morph
+        };
+      })*/
+    }
+    return lemma;
+
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error(`Failed to fetch lemma "${id}".`);
+  }
+}
+
 /*
 export async function fetchInvoicesPages(query: string) {
   try {

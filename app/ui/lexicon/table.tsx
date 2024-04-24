@@ -3,7 +3,7 @@ import { UpdateInvoice, DeleteInvoice } from '@/app/ui/lexicon/buttons';
 import InvoiceStatus from '@/app/ui/lexicon/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredLemmata } from '@/app/lib/data';
-import ONPLink from '../onp-link';
+import { LemmaLink, ONPLink } from '@/app/ui/links';
 
 export default async function LexiconTable({
   query,
@@ -62,9 +62,11 @@ export default async function LexiconTable({
                   ID
                 </th>
                 <th scope="col" className="px-3 py-5 w-1 font-medium">
+                </th>
+                <th scope="col" className="px-3 py-5 w-1 font-medium">
                   Entry
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 py-5 w-15 font-medium">
                   Part of speech
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
@@ -90,6 +92,9 @@ export default async function LexiconTable({
                     <div className="flex items-center gap-3">
                       <p className="text-gray-500">{lemma.id}</p>
                     </div>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3">
+                    <LemmaLink id={lemma.id}/>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <i>{lemma.entry}</i>
