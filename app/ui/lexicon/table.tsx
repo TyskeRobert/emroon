@@ -32,7 +32,7 @@ export default async function LexiconTable({
                         <ONPLink id={lemma.linkonp}/>
                       </div>
                     </div>
-                    <p><i>{lemma.entry}</i>, {lemma.pos}</p>
+                    <p><i>{lemma.entry}</i>, {lemma.pos} <LemmaLink id={lemma.id}/></p>
                   </div>
                   {/*
                   <InvoiceStatus status={invoice.status} />
