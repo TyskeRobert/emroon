@@ -28,7 +28,9 @@ export default async function LexiconTable({
                   <div>
                     <div className="mb-2 flex items-center text-sm text-gray-500">
                       <div>{lemma.id}</div>
-                      <div className="absolute right-12">{lemma.linkonp}</div>
+                      <div className="absolute right-12">
+                        <ONPLink id={lemma.linkonp}/>
+                      </div>
                     </div>
                     <p><i>{lemma.entry}</i>, {lemma.pos}</p>
                   </div>
