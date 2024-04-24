@@ -197,7 +197,7 @@ export async function fetchFilteredLemmata(
         entry ILIKE ${`%${query}%`} AND
         NOT entry='?' AND
         NOT id='L0'
-      ORDER BY entry ASC
+      ORDER BY LOWER(entry) ASC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};
     `;
     return lemmata.rows;

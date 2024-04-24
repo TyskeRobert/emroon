@@ -3,6 +3,7 @@ import { UpdateInvoice, DeleteInvoice } from '@/app/ui/lexicon/buttons';
 import InvoiceStatus from '@/app/ui/lexicon/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredLemmata } from '@/app/lib/data';
+import ONPLink from '../onp-link';
 
 export default async function LexiconTable({
   query,
@@ -95,7 +96,7 @@ export default async function LexiconTable({
                     {lemma.pos}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {lemma.linkonp}
+                    <ONPLink id={lemma.linkonp}/>
                   </td>
                   {/*
                   <td className="whitespace-nowrap px-3 py-3">
