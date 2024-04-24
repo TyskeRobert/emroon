@@ -1,10 +1,13 @@
 import { Suspense } from "react";
 
+import LexiconTable from "@/app/ui/lexicon/table";
 import { LexiconTableSkeleton } from "@/app/ui/skeletons";
+import Pagination from "@/app/ui/lexicon/pagination";
 import Search from "@/app/ui/search";
-import LexiconTable from "@/app/ui/lexicon/table"
 
-export default function Page({ 
+import { fetchLexiconPages } from "@/app/lib/data";
+
+export default async function Page({ 
     searchParams 
 }: { 
     searchParams?: {
@@ -14,6 +17,7 @@ export default function Page({
 }) {
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
+    const totalPages = await fetchLexiconPages(query);
 
     return (
         <div className="w-full">
@@ -27,9 +31,7 @@ export default function Page({
                 <LexiconTable query={query} currentPage={currentPage} />
             </Suspense> 
             <div className="mt-5 flex w-full justify-center">
-                {/* 
                 <Pagination totalPages={totalPages} /> 
-                */}
             </div>
         </div>
     );
