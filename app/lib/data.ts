@@ -194,7 +194,7 @@ export async function fetchFilteredLemmata(
       SELECT * 
       FROM lexicon
       WHERE 
-        entry ILIKE ${`%${query}%`} AND
+        entry ILIKE ${`${query}%`} AND
         NOT entry='?' AND
         NOT id='L0'
       ORDER BY LOWER(entry) ASC
@@ -213,7 +213,7 @@ export async function fetchLexiconPages(query: string) {
       SELECT COUNT(*)
       FROM lexicon
       WHERE 
-        entry ILIKE ${`%${query}%`} AND
+        entry ILIKE ${`${query}%`} AND
         NOT entry='?' AND
         NOT id='L0';
     `;
