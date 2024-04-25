@@ -38,7 +38,8 @@ export default function NavLinks() {
               gap-2 
               rounded-md 
               bg-gray-50 
-              p-3 text-sm 
+              p-3 
+              text-sm 
               font-medium 
               hover:bg-green-100 
               hover:text-green-700 
@@ -48,7 +49,7 @@ export default function NavLinks() {
               md:px-3
             `,
             {
-              'bg-green-100': pathname == link.href
+              'bg-green-100': pathname.indexOf(link.href) == 0
             })}
           >
             <LinkIcon className="w-6" />

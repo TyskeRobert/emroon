@@ -62,15 +62,15 @@ export default async function LexiconTable({
                   ID
                 </th>
                 <th scope="col" className="px-3 py-5 w-1 font-medium">
-                </th>
-                <th scope="col" className="px-3 py-5 w-1 font-medium">
                   Entry
                 </th>
-                <th scope="col" className="px-3 py-5 w-15 font-medium">
+                <th scope="col" className="px-3 py-5 w-60 font-medium">
                   Part of speech
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="px-3 py-5 w-60 font-medium">
                   ONP
+                </th>
+                <th scope="col" className="px-3 py-5 font-medium">
                 </th>
                 {/*
                 <th scope="col" className="px-3 py-5 font-medium">
@@ -86,7 +86,17 @@ export default async function LexiconTable({
               {lemmata?.map((lemma) => (
                 <tr
                   key={lemma.id}
-                  className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
+                  className={`
+                    w-full 
+                    border-b 
+                    py-3 
+                    text-sm 
+                    last-of-type:border-none 
+                    [&:first-child>td:first-child]:rounded-tl-lg 
+                    [&:first-child>td:last-child]:rounded-tr-lg 
+                    [&:last-child>td:first-child]:rounded-bl-lg 
+                    [&:last-child>td:last-child]:rounded-br-lg
+                  `}
                 >
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex items-center gap-3">
@@ -95,8 +105,6 @@ export default async function LexiconTable({
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <LemmaLink id={lemma.id}/>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
                     <i>{lemma.entry}</i>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
@@ -104,6 +112,8 @@ export default async function LexiconTable({
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <ONPLink id={lemma.linkonp}/>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3">
                   </td>
                   {/*
                   <td className="whitespace-nowrap px-3 py-3">

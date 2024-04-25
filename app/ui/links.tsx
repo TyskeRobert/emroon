@@ -18,8 +18,8 @@ export function ONPLink({ id }: { id: string}) {
 
 export function LemmaLink({ id }: { id: string }) {
     return (
-        <Link href={`/lexicon/${id}`} className="hover:text-green-700">
-            <ArrowRightCircleIcon className="w-6 inline"/>
+        <Link href={`/lexicon/lemmata/${id}`} className="hover:text-green-700">
+            <ArrowRightCircleIcon className="w-6 inline mr-2"/>
         </Link>
     );
 }
