@@ -92,9 +92,23 @@ export type InvoiceForm = {
 
 // emroon definitions:
 
+export type Form = {
+  id: string;
+  norm: string;
+  morph: string;
+};
+
 export type LemmaTable = {
   id: string;
   entry: string;
   pos: string;
   linkonp: string;
 };
+
+export type LemmaFull = {
+  id: string;
+  entry: string;
+  pos: string;
+  linkONP: string;
+  forms: Array<Form>;
+}

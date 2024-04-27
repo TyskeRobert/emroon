@@ -232,24 +232,26 @@ export async function fetchLemma(id: string) {
       FROM lexicon
       WHERE id=${id};
     `;
-    /*const rawForms = await sql`
+    const rawForms = await sql`
       SELECT *
       FROM forms
-      WHERE lemmaId='${id}';
-    `;*/
+      WHERE 
+        lemmaid=${id} AND
+        NOT formid='F0';
+    `;
 
     const lemma = {
       id,
       entry: rawLemma.rows[0].entry,
       pos: rawLemma.rows[0].pos,
       linkONP: rawLemma.rows[0].linkonp,
-      /*forms: rawForms.rows.map(form => {
+      forms: rawForms.rows.map(form => {
         return {
           id: form.id,
           norm: form.norm,
           morph: form.morph
         };
-      })*/
+      })
     }
     return lemma;
 
