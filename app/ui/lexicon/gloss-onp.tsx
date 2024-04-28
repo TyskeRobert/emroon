@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function GlossONP({ id }: { id: string }) {
-    if (!id) return null;
-
     const [data, setData]: [any, any] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
@@ -18,6 +16,7 @@ export default function GlossONP({ id }: { id: string }) {
             });
     }, []);
 
+    if (!id) return null;
     if (isLoading) return <p>Loading ...</p>
     if (!data) return <p>No ONP lemma with the ID {id} could be found.</p>
 
