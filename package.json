@@ -7,7 +7,9 @@
     "prettier:check": "prettier --check --ignore-unknown .",
     "start": "next start",
     "seed": "node -r dotenv/config ./scripts/seed.js",
-    "reset": "node -r dotenv/config ./scripts/reset.js"
+    "reset-lexicon": "node -r dotenv/config ./scripts/reset-lexicon.js",
+    "check-data": "node -r dotenv/config ./scripts/check-data.js",
+    "compile-corpus": "node -r dotenv/config ./scripts/compile-corpus.js"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
