@@ -10,6 +10,8 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                     case "nc.f":
                     case "nc.n":
                     case "np.m":
+                    case "np.f":
+                    case "np.n":
                         return <NounTable lemma={lemma}/>;
                     case "vb.a":
                         return <VerbTable lemma={lemma}/>;
