@@ -18,6 +18,8 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                     case "vb.a":
                     case "vb.r":
                         return <VerbTable lemma={lemma}/>;
+                    case "av":
+                        return <AdverbTable lemma={lemma}/>;
                     case "ap":
                     case "fn":
                     case "fw":
@@ -268,6 +270,31 @@ function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
                 </tr>
             </tbody>
         </table>
+    );
+}
+
+function AdverbTable({ lemma }: { lemma: LemmaFull }) {
+    return (
+        <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
+            <tbody className="bg-white">
+                <tr>
+                    <th className="bg-gray-50 p-2">positive</th>
+                    <FormCell lemma={lemma} morph="----p----"/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">comparative</th>
+                    <FormCell lemma={lemma} morph="----c----"/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">superlative</th>
+                    <FormCell lemma={lemma} morph="----s----"/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">equative</th>
+                    <FormCell lemma={lemma} morph="----e----"/>
+                </tr>
+            </tbody>
+        </table>   
     );
 }
 
