@@ -16,6 +16,7 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                     case "vb.a":
                         return <VerbTable lemma={lemma}/>;
                     case "ap":
+                    case "fn":
                         return <UninflectedTable lemma={lemma}/>;
                     default:
                         return <p>Paradigm undefined for {lemma.id}</p>;
@@ -84,7 +85,7 @@ function UninflectedTable({ lemma }: { lemma: LemmaFull }) {
             </thead>
             <tbody className="bg-white">
                 <tr>
-                    <FormCell lemma={lemma} morph="---------"/>
+                    <FormCell lemma={lemma}/>
                 </tr>
             </tbody>
         </table>
@@ -273,8 +274,8 @@ function FormRowConditional ({ lemma, morph, name }: { lemma: LemmaFull, morph: 
     return lemma.forms.filter(form => form.morph == morph).length ? line : null;
 }
 
-function FormCell({ lemma, morph, colSpan }: { lemma: LemmaFull, morph: string, colSpan?: number }) {
-    const hits = lemma.forms.filter(form => form.morph == morph);
+function FormCell({ lemma, morph, colSpan }: { lemma: LemmaFull, morph?: string, colSpan?: number }) {
+    const hits = morph ? lemma.forms.filter(form => form.morph == morph) : lemma.forms;
     return (
         <td colSpan={colSpan || 1} className="p-2 border-2 border-gray-50 text-center italic">
             {hits.map(form => <span key={form.id}>{form.norm}<br/></span>)}
