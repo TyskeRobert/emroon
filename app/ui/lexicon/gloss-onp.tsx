@@ -8,7 +8,7 @@ export default function GlossONP({ id }: { id: string }) {
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`https://onp.ku.dk/json/onp/${id}`)
+        fetch(`https://onp.ku.dk/json/onp/${id ? id : 'o0'}`)
             .then(res => res.json())
             .then(data => {
                 setData(data);
