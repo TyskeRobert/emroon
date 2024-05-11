@@ -17,6 +17,7 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                         return <VerbTable lemma={lemma}/>;
                     case "ap":
                     case "fn":
+                    case "fw":
                         return <UninflectedTable lemma={lemma}/>;
                     default:
                         return <p>Paradigm undefined for {lemma.id}</p>;
@@ -278,7 +279,9 @@ function FormCell({ lemma, morph, colSpan }: { lemma: LemmaFull, morph?: string,
     const hits = morph ? lemma.forms.filter(form => form.morph == morph) : lemma.forms;
     return (
         <td colSpan={colSpan || 1} className="p-2 border-2 border-gray-50 text-center italic">
-            {hits.map(form => <span key={form.id}>{form.norm}<br/></span>)}
+            {hits
+                .slice().sort((a, b) => a.norm.localeCompare(b.norm))
+                .map(form => <span key={form.id}>{form.norm}<br/></span>)}
         </td>
     );
 }
