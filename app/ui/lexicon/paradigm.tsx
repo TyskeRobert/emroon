@@ -341,7 +341,7 @@ function UninflectedTable({ lemma }: { lemma: LemmaFull }) {
 function VerbTable({ lemma }: { lemma: LemmaFull}) {
     return (
         <>
-            <table className="my-4 border-4 rounded-md border-gray-50 bg-gray-50">
+            <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
                 <caption className="caption-top">
                     Uninflected forms
                 </caption>
