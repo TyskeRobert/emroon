@@ -16,6 +16,7 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                     case "aj":
                         return <AdjectiveTable lemma={lemma}/>;
                     case "vb.a":
+                    case "vb.r":
                         return <VerbTable lemma={lemma}/>;
                     case "ap":
                     case "fn":
