@@ -13,6 +13,8 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                     case "np.f":
                     case "np.n":
                         return <NounTable lemma={lemma}/>;
+                    case "aj":
+                        return <AdjectiveTable lemma={lemma}/>;
                     case "vb.a":
                         return <VerbTable lemma={lemma}/>;
                     case "ap":
@@ -23,6 +25,248 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                         return <p>Paradigm undefined for {lemma.id}</p>;
             }})()}
         </div>
+    );
+}
+
+function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
+    return (
+        <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
+            <thead className="pt-3">
+                <tr>
+                    <th colSpan={3} rowSpan={2}/>
+                    <th colSpan={3} className="p-2">singular</th>
+                    <th colSpan={3} className="p-2">plural</th>
+                </tr>
+                <tr>
+                    <th className="p-2">masculine</th>
+                    <th className="p-2">feminine</th>
+                    <th className="p-2">neuter</th>
+                    <th className="p-2">masculine</th>
+                    <th className="p-2">feminine</th>
+                    <th className="p-2">neuter</th>
+                </tr>
+            </thead>
+            <tbody className="bg-white">
+                <tr>
+                    <th rowSpan={8} className="bg-gray-50 p-2">positive</th>
+                    <th rowSpan={4} className="bg-gray-50 p-2">strong</th>
+                    <th className="bg-gray-50 p-2">nominative</th>
+                    <FormCell lemma={lemma} morph="----pmsni"/>
+                    <FormCell lemma={lemma} morph="----pfsni"/>
+                    <FormCell lemma={lemma} morph="----pnsni"/>
+                    <FormCell lemma={lemma} morph="----pmpni"/>
+                    <FormCell lemma={lemma} morph="----pfpni"/>
+                    <FormCell lemma={lemma} morph="----pnpni"/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">genitive</th>
+                    <FormCell lemma={lemma} morph="----pmsgi"/>
+                    <FormCell lemma={lemma} morph="----pfsgi"/>
+                    <FormCell lemma={lemma} morph="----pnsgi"/>
+                    <FormCell lemma={lemma} morph="----pxpgi" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">dative</th>
+                    <FormCell lemma={lemma} morph="----pmsdi"/>
+                    <FormCell lemma={lemma} morph="----pfsdi"/>
+                    <FormCell lemma={lemma} morph="----pnsdi"/>
+                    <FormCell lemma={lemma} morph="----pxpdi" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">accusative</th>
+                    <FormCell lemma={lemma} morph="----pmsai"/>
+                    <FormCell lemma={lemma} morph="----pfsai"/>
+                    <FormCell lemma={lemma} morph="----pnsai"/>
+                    <FormCell lemma={lemma} morph="----pmpai"/>
+                    <FormCell lemma={lemma} morph="----pfpai"/>
+                    <FormCell lemma={lemma} morph="----pnpai"/>
+                </tr>
+                <tr>
+                    <th rowSpan={4} className="bg-gray-50 p-2">weak</th>
+                    <th className="bg-gray-50 p-2">nominative</th>
+                    <FormCell lemma={lemma} morph="----pmsnd"/>
+                    <FormCell lemma={lemma} morph="----pfsnd"/>
+                    <FormCell lemma={lemma} morph="----pnsnd"/>
+                    <FormCell lemma={lemma} morph="----pxpnd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">genitive</th>
+                    <FormCell lemma={lemma} morph="----pmsgd"/>
+                    <FormCell lemma={lemma} morph="----pfsgd"/>
+                    <FormCell lemma={lemma} morph="----pnsgd"/>
+                    <FormCell lemma={lemma} morph="----pxpgd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">dative</th>
+                    <FormCell lemma={lemma} morph="----pmsdd"/>
+                    <FormCell lemma={lemma} morph="----pfsdd"/>
+                    <FormCell lemma={lemma} morph="----pnsdd"/>
+                    <FormCell lemma={lemma} morph="----pxpdd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">accusative</th>
+                    <FormCell lemma={lemma} morph="----pmsad"/>
+                    <FormCell lemma={lemma} morph="----pfsad"/>
+                    <FormCell lemma={lemma} morph="----pnsad"/>
+                    <FormCell lemma={lemma} morph="----pxpad" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th colSpan={2} rowSpan={4} className="bg-gray-50 p-2">comparative</th>
+                    <th className="bg-gray-50 p-2">nominative</th>
+                    <FormCell lemma={lemma} morph="----cmsnd"/>
+                    <FormCell lemma={lemma} morph="----cfsnd"/>
+                    <FormCell lemma={lemma} morph="----cnsnd"/>
+                    <FormCell lemma={lemma} morph="----cxpnd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">genitive</th>
+                    <FormCell lemma={lemma} morph="----cmsgd"/>
+                    <FormCell lemma={lemma} morph="----cfsgd"/>
+                    <FormCell lemma={lemma} morph="----cnsgd"/>
+                    <FormCell lemma={lemma} morph="----cxpgd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">dative</th>
+                    <FormCell lemma={lemma} morph="----cmsdd"/>
+                    <FormCell lemma={lemma} morph="----cfsdd"/>
+                    <FormCell lemma={lemma} morph="----cnsdd"/>
+                    <FormCell lemma={lemma} morph="----cxpdd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">accusative</th>
+                    <FormCell lemma={lemma} morph="----cmsad"/>
+                    <FormCell lemma={lemma} morph="----cfsad"/>
+                    <FormCell lemma={lemma} morph="----cnsad"/>
+                    <FormCell lemma={lemma} morph="----cxpad" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th rowSpan={8} className="bg-gray-50 p-2">superlative</th>
+                    <th rowSpan={4} className="bg-gray-50 p-2">strong</th>
+                    <th className="bg-gray-50 p-2">nominative</th>
+                    <FormCell lemma={lemma} morph="----smsni"/>
+                    <FormCell lemma={lemma} morph="----sfsni"/>
+                    <FormCell lemma={lemma} morph="----snsni"/>
+                    <FormCell lemma={lemma} morph="----smpni"/>
+                    <FormCell lemma={lemma} morph="----sfpni"/>
+                    <FormCell lemma={lemma} morph="----snpni"/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">genitive</th>
+                    <FormCell lemma={lemma} morph="----smsgi"/>
+                    <FormCell lemma={lemma} morph="----sfsgi"/>
+                    <FormCell lemma={lemma} morph="----snsgi"/>
+                    <FormCell lemma={lemma} morph="----sxpgi" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">dative</th>
+                    <FormCell lemma={lemma} morph="----smsdi"/>
+                    <FormCell lemma={lemma} morph="----sfsdi"/>
+                    <FormCell lemma={lemma} morph="----snsdi"/>
+                    <FormCell lemma={lemma} morph="----sxpdi" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">accusative</th>
+                    <FormCell lemma={lemma} morph="----smsai"/>
+                    <FormCell lemma={lemma} morph="----sfsai"/>
+                    <FormCell lemma={lemma} morph="----snsai"/>
+                    <FormCell lemma={lemma} morph="----smpai"/>
+                    <FormCell lemma={lemma} morph="----sfpai"/>
+                    <FormCell lemma={lemma} morph="----snpai"/>
+                </tr>
+                <tr>
+                    <th rowSpan={4} className="bg-gray-50 p-2">weak</th>
+                    <th className="bg-gray-50 p-2">nominative</th>
+                    <FormCell lemma={lemma} morph="----smsnd"/>
+                    <FormCell lemma={lemma} morph="----sfsnd"/>
+                    <FormCell lemma={lemma} morph="----snsnd"/>
+                    <FormCell lemma={lemma} morph="----sxpnd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">genitive</th>
+                    <FormCell lemma={lemma} morph="----smsgd"/>
+                    <FormCell lemma={lemma} morph="----sfsgd"/>
+                    <FormCell lemma={lemma} morph="----snsgd"/>
+                    <FormCell lemma={lemma} morph="----sxpgd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">dative</th>
+                    <FormCell lemma={lemma} morph="----smsdd"/>
+                    <FormCell lemma={lemma} morph="----sfsdd"/>
+                    <FormCell lemma={lemma} morph="----snsdd"/>
+                    <FormCell lemma={lemma} morph="----sxpdd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">accusative</th>
+                    <FormCell lemma={lemma} morph="----smsad"/>
+                    <FormCell lemma={lemma} morph="----sfsad"/>
+                    <FormCell lemma={lemma} morph="----snsad"/>
+                    <FormCell lemma={lemma} morph="----sxpad" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th rowSpan={8} className="bg-gray-50 p-2">equative</th>
+                    <th rowSpan={4} className="bg-gray-50 p-2">strong</th>
+                    <th className="bg-gray-50 p-2">nominative</th>
+                    <FormCell lemma={lemma} morph="----emsni"/>
+                    <FormCell lemma={lemma} morph="----efsni"/>
+                    <FormCell lemma={lemma} morph="----ensni"/>
+                    <FormCell lemma={lemma} morph="----empni"/>
+                    <FormCell lemma={lemma} morph="----efpni"/>
+                    <FormCell lemma={lemma} morph="----enpni"/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">genitive</th>
+                    <FormCell lemma={lemma} morph="----emsgi"/>
+                    <FormCell lemma={lemma} morph="----efsgi"/>
+                    <FormCell lemma={lemma} morph="----ensgi"/>
+                    <FormCell lemma={lemma} morph="----expgi" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">dative</th>
+                    <FormCell lemma={lemma} morph="----emsdi"/>
+                    <FormCell lemma={lemma} morph="----efsdi"/>
+                    <FormCell lemma={lemma} morph="----ensdi"/>
+                    <FormCell lemma={lemma} morph="----expdi" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">accusative</th>
+                    <FormCell lemma={lemma} morph="----emsai"/>
+                    <FormCell lemma={lemma} morph="----efsai"/>
+                    <FormCell lemma={lemma} morph="----ensai"/>
+                    <FormCell lemma={lemma} morph="----empai"/>
+                    <FormCell lemma={lemma} morph="----efpai"/>
+                    <FormCell lemma={lemma} morph="----enpai"/>
+                </tr>
+                <tr>
+                    <th rowSpan={4} className="bg-gray-50 p-2">weak</th>
+                    <th className="bg-gray-50 p-2">nominative</th>
+                    <FormCell lemma={lemma} morph="----emsnd"/>
+                    <FormCell lemma={lemma} morph="----efsnd"/>
+                    <FormCell lemma={lemma} morph="----ensnd"/>
+                    <FormCell lemma={lemma} morph="----expnd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">genitive</th>
+                    <FormCell lemma={lemma} morph="----emsgd"/>
+                    <FormCell lemma={lemma} morph="----efsgd"/>
+                    <FormCell lemma={lemma} morph="----ensgd"/>
+                    <FormCell lemma={lemma} morph="----expgd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">dative</th>
+                    <FormCell lemma={lemma} morph="----emsdd"/>
+                    <FormCell lemma={lemma} morph="----efsdd"/>
+                    <FormCell lemma={lemma} morph="----ensdd"/>
+                    <FormCell lemma={lemma} morph="----expdd" colSpan={3}/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">accusative</th>
+                    <FormCell lemma={lemma} morph="----emsad"/>
+                    <FormCell lemma={lemma} morph="----efsad"/>
+                    <FormCell lemma={lemma} morph="----ensad"/>
+                    <FormCell lemma={lemma} morph="----expad" colSpan={3}/>
+                </tr>
+            </tbody>
+        </table>
     );
 }
 
