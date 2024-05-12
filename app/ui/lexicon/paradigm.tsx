@@ -19,6 +19,8 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                     case "dp":
                     case "dq":
                         return <DeterminerTable lemma={lemma}/>;
+                    case "pe":
+                        return <PronounTable lemma={lemma}/>;
                     case "vb.a":
                     case "vb.r":
                         return <VerbTable lemma={lemma}/>;
@@ -312,12 +314,12 @@ function DeterminerTable({ lemma }: { lemma: LemmaFull }) {
                     <th colSpan={3}>plural</th>
                 </tr>
                 <tr>
-                    <th>masculine</th>
-                    <th>feminine</th>
-                    <th>neuter</th>
-                    <th>masculine</th>
-                    <th>feminine</th>
-                    <th>neuter</th>
+                    <th className="p-2">masculine</th>
+                    <th className="p-2">feminine</th>
+                    <th className="p-2">neuter</th>
+                    <th className="p-2">masculine</th>
+                    <th className="p-2">feminine</th>
+                    <th className="p-2">neuter</th>
                 </tr>
             </thead>
             <tbody className="bg-white">
@@ -405,6 +407,31 @@ function NounTable({ lemma }: { lemma: LemmaFull }) {
                 </tr>
             </tbody>
         </table>
+    );
+}
+
+function PronounTable({ lemma }: { lemma: LemmaFull }) {
+    return (
+        <table className="my-4 grow border-4 rounded-md border-gray-50 bg-gray-50">
+            <tbody className="bg-white">
+                <tr>
+                    <th className="bg-gray-50 p-2">nominative</th>
+                    <FormCell lemma={lemma} morph="-------n-"/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">genitive</th>
+                    <FormCell lemma={lemma} morph="-------g-"/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">dative</th>
+                    <FormCell lemma={lemma} morph="-------d-"/>
+                </tr>
+                <tr>
+                    <th className="bg-gray-50 p-2">accusative</th>
+                    <FormCell lemma={lemma} morph="-------a-"/>
+                </tr>
+            </tbody>
+        </table>   
     );
 }
 
