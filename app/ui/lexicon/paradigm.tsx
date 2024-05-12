@@ -279,7 +279,7 @@ function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
 
 function AdverbTable({ lemma }: { lemma: LemmaFull }) {
     return (
-        <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
+        <table className="my-4 grow border-4 rounded-md border-gray-50 bg-gray-50">
             <tbody className="bg-white">
                 <tr>
                     <th className="bg-gray-50 p-2">positive</th>
@@ -360,7 +360,7 @@ function DeterminerTable({ lemma }: { lemma: LemmaFull }) {
 
 function NounTable({ lemma }: { lemma: LemmaFull }) {
     return (
-        <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
+        <table className="my-4 grow border-4 rounded-md border-gray-50 bg-gray-50">
             <thead className="pt-3">
                 <tr>
                     <th rowSpan={2}/>
@@ -410,14 +410,10 @@ function NounTable({ lemma }: { lemma: LemmaFull }) {
 
 function UninflectedTable({ lemma }: { lemma: LemmaFull }) {
     return (
-        <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
-            <thead className="pt-3">
-                <tr>
-                    <th className="p-2">Not inflected</th>
-                </tr>
-            </thead>
+        <table className="my-4 grow border-4 rounded-md border-gray-50 bg-gray-50">
             <tbody className="bg-white">
                 <tr>
+                    <th className="bg-gray-50 p-2">Not inflected</th>
                     <FormCell lemma={lemma}/>
                 </tr>
             </tbody>
@@ -428,7 +424,7 @@ function UninflectedTable({ lemma }: { lemma: LemmaFull }) {
 function VerbTable({ lemma }: { lemma: LemmaFull}) {
     return (
         <>
-            <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
+            <table className="my-4 grow border-4 rounded-md border-gray-50 bg-gray-50">
                 <caption className="caption-top">
                     Uninflected forms
                 </caption>
@@ -438,7 +434,7 @@ function VerbTable({ lemma }: { lemma: LemmaFull}) {
                     <FormRowConditional lemma={lemma} morph="s--------" name="supinum"/>
                 </tbody>
             </table>
-            <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
+            <table className="my-4 grow border-4 rounded-md border-gray-50 bg-gray-50">
                 <caption className="caption-top">
                     Finite forms
                 </caption>
@@ -507,7 +503,7 @@ function VerbTable({ lemma }: { lemma: LemmaFull}) {
                 </tbody>
             </table>
             <table className={clsx(
-                "my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50",
+                "my-4 grow border-4 rounded-md border-gray-50 bg-gray-50",
                 {
                     "hidden": !lemma.forms.filter(form => form.morph.match(/^r/)).length
                 }
