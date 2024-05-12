@@ -15,7 +15,9 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                         return <NounTable lemma={lemma}/>;
                     case "aj":
                         return <AdjectiveTable lemma={lemma}/>;
+                    case "dd":
                     case "dp":
+                    case "dq":
                         return <DeterminerTable lemma={lemma}/>;
                     case "vb.a":
                     case "vb.r":
@@ -35,7 +37,7 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
 
 function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
     return (
-        <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
+        <table className="my-4 grow border-4 rounded-md border-gray-50 bg-gray-50">
             <thead className="pt-3">
                 <tr>
                     <th colSpan={3} rowSpan={2}/>
@@ -302,7 +304,7 @@ function AdverbTable({ lemma }: { lemma: LemmaFull }) {
 
 function DeterminerTable({ lemma }: { lemma: LemmaFull }) {
     return (
-        <table className="my-4 grow w-full border-4 rounded-md border-gray-50 bg-gray-50">
+        <table className="my-4 grow border-4 rounded-md border-gray-50 bg-gray-50">
             <thead className="pt-3">
                 <tr>
                     <th rowSpan={2}/>
