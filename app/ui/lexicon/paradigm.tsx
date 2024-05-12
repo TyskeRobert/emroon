@@ -18,6 +18,7 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                     case "dd":
                     case "dp":
                     case "dq":
+                    case "pi":
                         return <DeterminerTable lemma={lemma}/>;
                     case "pe":
                         return <PronounTable lemma={lemma}/>;
