@@ -306,57 +306,77 @@ function AdverbTable({ lemma }: { lemma: LemmaFull }) {
 
 function DeterminerTable({ lemma }: { lemma: LemmaFull }) {
     return (
-        <table className="my-4 grow border-4 rounded-md border-gray-50 bg-gray-50">
-            <thead className="pt-3">
-                <tr>
-                    <th rowSpan={2}/>
-                    <th colSpan={3}>singular</th>
-                    <th colSpan={3}>plural</th>
-                </tr>
-                <tr>
-                    <th className="p-2">masculine</th>
-                    <th className="p-2">feminine</th>
-                    <th className="p-2">neuter</th>
-                    <th className="p-2">masculine</th>
-                    <th className="p-2">feminine</th>
-                    <th className="p-2">neuter</th>
-                </tr>
-            </thead>
-            <tbody className="bg-white">
-                <tr>
-                    <th className="bg-gray-50 p-2">nominative</th>
-                    <FormCell lemma={lemma} morph="-----msn-"/>
-                    <FormCell lemma={lemma} morph="-----fsn-"/>
-                    <FormCell lemma={lemma} morph="-----nsn-"/>
-                    <FormCell lemma={lemma} morph="-----mpn-"/>
-                    <FormCell lemma={lemma} morph="-----fpn-"/>
-                    <FormCell lemma={lemma} morph="-----npn-"/>
-                </tr>
-                <tr>
-                    <th className="bg-gray-50 p-2">genitive</th>
-                    <FormCell lemma={lemma} morph="-----msg-"/>
-                    <FormCell lemma={lemma} morph="-----fsg-"/>
-                    <FormCell lemma={lemma} morph="-----nsg-"/>
-                    <FormCell lemma={lemma} morph="-----xpg-" colSpan={3}/>
-                </tr>
-                <tr>
-                    <th className="bg-gray-50 p-2">dative</th>
-                    <FormCell lemma={lemma} morph="-----msd-"/>
-                    <FormCell lemma={lemma} morph="-----fsd-"/>
-                    <FormCell lemma={lemma} morph="-----nsd-"/>
-                    <FormCell lemma={lemma} morph="-----xpd-" colSpan={3}/>
-                </tr>
-                <tr>
-                    <th className="bg-gray-50 p-2">accusative</th>
-                    <FormCell lemma={lemma} morph="-----msa-"/>
-                    <FormCell lemma={lemma} morph="-----fsa-"/>
-                    <FormCell lemma={lemma} morph="-----nsa-"/>
-                    <FormCell lemma={lemma} morph="-----mpa-"/>
-                    <FormCell lemma={lemma} morph="-----fpa-"/>
-                    <FormCell lemma={lemma} morph="-----npa-"/>
-                </tr>
-            </tbody>
-        </table>
+        <>
+            <table className={clsx(
+                `my-4 grow border-4 rounded-md border-gray-50 bg-gray-50`,
+                {
+                    "hidden": !lemma.forms.filter(form => form.morph == "-----xpx-").length
+                }  
+            )}>
+                <tbody className="bg-white">
+                    <tr>
+                        <th className="bg-gray-50 p-2">Not inflected</th>
+                        <FormCell lemma={lemma} morph="-----xpx-"/>
+                    </tr>
+                </tbody>
+            </table>
+            <table className={clsx(
+                `my-4 grow border-4 rounded-md border-gray-50 bg-gray-50`,
+                {
+                    "hidden": lemma.forms.filter(form => form.morph == "-----xpx-").length
+                }  
+            )}>
+                <thead className="pt-3">
+                    <tr>
+                        <th rowSpan={2}/>
+                        <th colSpan={3}>singular</th>
+                        <th colSpan={3}>plural</th>
+                    </tr>
+                    <tr>
+                        <th className="p-2">masculine</th>
+                        <th className="p-2">feminine</th>
+                        <th className="p-2">neuter</th>
+                        <th className="p-2">masculine</th>
+                        <th className="p-2">feminine</th>
+                        <th className="p-2">neuter</th>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <th className="bg-gray-50 p-2">nominative</th>
+                        <FormCell lemma={lemma} morph="-----msn-"/>
+                        <FormCell lemma={lemma} morph="-----fsn-"/>
+                        <FormCell lemma={lemma} morph="-----nsn-"/>
+                        <FormCell lemma={lemma} morph="-----mpn-"/>
+                        <FormCell lemma={lemma} morph="-----fpn-"/>
+                        <FormCell lemma={lemma} morph="-----npn-"/>
+                    </tr>
+                    <tr>
+                        <th className="bg-gray-50 p-2">genitive</th>
+                        <FormCell lemma={lemma} morph="-----msg-"/>
+                        <FormCell lemma={lemma} morph="-----fsg-"/>
+                        <FormCell lemma={lemma} morph="-----nsg-"/>
+                        <FormCell lemma={lemma} morph="-----xpg-" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <th className="bg-gray-50 p-2">dative</th>
+                        <FormCell lemma={lemma} morph="-----msd-"/>
+                        <FormCell lemma={lemma} morph="-----fsd-"/>
+                        <FormCell lemma={lemma} morph="-----nsd-"/>
+                        <FormCell lemma={lemma} morph="-----xpd-" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <th className="bg-gray-50 p-2">accusative</th>
+                        <FormCell lemma={lemma} morph="-----msa-"/>
+                        <FormCell lemma={lemma} morph="-----fsa-"/>
+                        <FormCell lemma={lemma} morph="-----nsa-"/>
+                        <FormCell lemma={lemma} morph="-----mpa-"/>
+                        <FormCell lemma={lemma} morph="-----fpa-"/>
+                        <FormCell lemma={lemma} morph="-----npa-"/>
+                    </tr>
+                </tbody>
+            </table>
+        </>
     );
 }
 
