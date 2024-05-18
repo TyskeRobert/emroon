@@ -1,10 +1,9 @@
 import { Suspense } from "react";
 
-import LexiconTable from "@/app/ui/lexicon/table";
+import { LexiconTable } from "@/app/ui/lexicon/tables";
 import { LexiconTableSkeleton } from "@/app/ui/skeletons";
 import Pagination from "@/app/ui/lexicon/pagination";
 import Search from "@/app/ui/search";
-
 import { fetchLexiconPages } from "@/app/lib/data";
 
 export default async function Page({ 

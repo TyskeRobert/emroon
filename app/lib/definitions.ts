@@ -98,6 +98,11 @@ export type Form = {
   morph: string;
 };
 
+export type FormTable = {
+  id: string;
+  norm: string;
+}
+
 export type LemmaTable = {
   id: string;
   entry: string;

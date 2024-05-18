@@ -23,3 +23,11 @@ export function LemmaLink({ id }: { id: string }) {
         </Link>
     );
 }
+
+export function FormLink({ id }: { id: string }) {
+    return (
+        <Link href={`/lexicon/forms/${id}`} className="hover:text-green-700">
+            <ArrowRightCircleIcon className="w-6 inline mr-2"/>
+        </Link>
+    )
+}

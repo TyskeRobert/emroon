@@ -2,6 +2,7 @@ import { sql } from '@vercel/postgres';
 import {
   CustomerField,
   CustomersTableType,
+  FormTable,
   InvoiceForm,
   LatestInvoiceRaw,
   LemmaTable,
@@ -207,6 +208,30 @@ export async function fetchFilteredLemmata(
   }
 }
 
+export async function fetchFilteredForms(
+  query: string,
+  currentPage: number
+) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  try {
+    const forms = await sql<FormTable>`
+      SELECT id, norm
+      FROM forms
+      WHERE
+        norm ILIKE ${`${query}%`} AND
+        NOT norm='?' AND
+        NOT id ILIKE '%F0'
+      ORDER BY LOWER(norm) ASC
+      LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};
+    `;
+    return forms.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch forms.');
+  }
+}
+
 export async function fetchLexiconPages(query: string) {
   try {
     const count = await sql`
@@ -221,7 +246,25 @@ export async function fetchLexiconPages(query: string) {
     return totalPages;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch total number of lexicon entries.');
+    throw new Error('Failed to fetch total number of matching lexicon entries.');
+  }
+}
+
+export async function fetchFormsPages(query: string) {
+  try {
+    const count = await sql`
+      SELECT COUNT(*)
+      FROM forms
+      WHERE
+        norm ILIKE ${`${query}%`} AND
+        NOT norm='?' AND
+        NOT id ILIKE '%F0';
+    `;
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of matching forms.');
   }
 }
 
@@ -252,12 +295,32 @@ export async function fetchLemma(id: string) {
           morph: form.morph
         };
       })
-    }
+    };
     return lemma;
 
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error(`Failed to fetch lemma "${id}".`);
+  }
+}
+
+export async function fetchForm(id: string) {
+  try {
+    const rawForm = await sql`
+      SELECT *
+      FROM forms
+      WHERE id=${id};
+    `;
+
+    const form = {
+      id,
+      norm: rawForm.rows[0].norm
+    };
+    return form;
+
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error(`Failed to fetch form "${id}".`);
   }
 }
 
