@@ -101,6 +101,7 @@ export type Form = {
 export type FormTable = {
   id: string;
   norm: string;
+  morph: string;
 }
 
 export type LemmaTable = {

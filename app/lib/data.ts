@@ -216,7 +216,7 @@ export async function fetchFilteredForms(
 
   try {
     const forms = await sql<FormTable>`
-      SELECT id, norm
+      SELECT id, norm, morph
       FROM forms
       WHERE
         norm ILIKE ${`${query}%`} AND
@@ -314,7 +314,8 @@ export async function fetchForm(id: string) {
 
     const form = {
       id,
-      norm: rawForm.rows[0].norm
+      norm: rawForm.rows[0].norm,
+      morph: rawForm.rows[0].morph
     };
     return form;
 
