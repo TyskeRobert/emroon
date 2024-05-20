@@ -525,7 +525,7 @@ function VerbTable({ lemma }: { lemma: LemmaFull}) {
                     <FormRowConditional lemma={lemma} morph="s--------" name="supinum"/>
                 </tbody>
             </ParadigmTable>
-            <ParadigmTable caption="Finite forms">
+            <ParadigmTable caption="Finite forms" size="full">
                 <thead>
                     <tr>
                         <ParadigmHead colSpan={2} rowSpan={2}/>
@@ -590,7 +590,101 @@ function VerbTable({ lemma }: { lemma: LemmaFull}) {
                     </tr>
                 </tbody>
             </ParadigmTable>
-            <ParadigmTable lemma={lemma} condition={/^r---p....$/} caption="Resultative positive">
+            <ParadigmTable caption="Present" size="small">
+                <thead>
+                    <tr>
+                        <ParadigmHead colSpan={2}/>
+                        <ParadigmHead label="ind"/>
+                        <ParadigmHead label="opt"/>
+                        <ParadigmHead label="ipv"/>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="sg" rowSpan={3}/>
+                        <ParadigmHead label="1st"/>
+                        <FormCell lemma={lemma} morph="fsi1--s--"/>
+                        <FormCell lemma={lemma} morph="fso1--s--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="2nd"/>
+                        <FormCell lemma={lemma} morph="fsi2--s--"/>
+                        <FormCell lemma={lemma} morph="fso2--s--"/>
+                        <FormCell lemma={lemma} morph="fsp2--s--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="3rd"/>
+                        <FormCell lemma={lemma} morph="fsi3--s--"/>
+                        <FormCell lemma={lemma} morph="fso3--s--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="pl" rowSpan={3}/>
+                        <ParadigmHead label="1st"/>
+                        <FormCell lemma={lemma} morph="fsi1--p--"/>
+                        <FormCell lemma={lemma} morph="fso1--p--"/>
+                        <FormCell lemma={lemma} morph="fsp1--p--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="2nd"/>
+                        <FormCell lemma={lemma} morph="fsi2--p--"/>
+                        <FormCell lemma={lemma} morph="fso2--p--"/>
+                        <FormCell lemma={lemma} morph="fsp2--p--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="3rd"/>
+                        <FormCell lemma={lemma} morph="fsi3--s--"/>
+                        <FormCell lemma={lemma} morph="fso3--s--"/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+            <ParadigmTable caption="Preterite" size="small">
+                <thead>
+                    <tr>
+                        <ParadigmHead colSpan={2}/>
+                        <ParadigmHead label="ind"/>
+                        <ParadigmHead label="opt"/>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="sg" rowSpan={3}/>
+                        <ParadigmHead label="1st"/>
+                        <FormCell lemma={lemma} morph="fti1--s--"/>
+                        <FormCell lemma={lemma} morph="fto1--s--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="2nd"/>
+                        <FormCell lemma={lemma} morph="fti2--s--"/>
+                        <FormCell lemma={lemma} morph="fto2--s--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="3rd"/>
+                        <FormCell lemma={lemma} morph="fti3--s--"/>
+                        <FormCell lemma={lemma} morph="fto3--s--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="pl" rowSpan={3}/>
+                        <ParadigmHead label="1st"/>
+                        <FormCell lemma={lemma} morph="fti1--p--"/>
+                        <FormCell lemma={lemma} morph="fto1--p--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="2nd"/>
+                        <FormCell lemma={lemma} morph="fti2--p--"/>
+                        <FormCell lemma={lemma} morph="fto2--p--"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="3rd"/>
+                        <FormCell lemma={lemma} morph="fti3--s--"/>
+                        <FormCell lemma={lemma} morph="fto3--s--"/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+            <ParadigmTable 
+                lemma={lemma} 
+                condition={/^r---p....$/} 
+                caption="Resultative positive"
+            >
                 <thead>
                     <tr>
                         <ParadigmHead colSpan={2} rowSpan={2}/>
@@ -819,17 +913,23 @@ function ParadigmTable({
     lemma, 
     condition, 
     exclude,
-    caption 
+    caption,
+    size
 }: { 
     children: React.ReactNode, 
     lemma?: LemmaFull, 
     condition?: RegExp,
     exclude?: boolean,
-    caption?: string
+    caption?: string,
+    size?: "small" | "full"
 }) {
     return (
         <table className={clsx(
             "my-4 min-w-[200px] border-4 border-gray-50 bg-gray-50",
+            {
+                "hidden md:table": size && size == "full",
+                "md:hidden": size && size == "small"
+            },
             {
                 "hidden": condition && !exclude && !lemma?.forms.filter(
                     form => form.morph.match(condition || /^.........$/)
