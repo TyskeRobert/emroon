@@ -1,4 +1,6 @@
 import { fetchLemma } from "@/app/lib/data";
+import { partsOfSpeech } from "@/app/lib/vocabularies";
+
 import GlossONP from "@/app/ui/lexicon/gloss-onp";
 import Paradigm from "@/app/ui/lexicon/paradigm";
 
@@ -9,7 +11,7 @@ export default async function Page({ params }: { params: { id: string }}) {
         <div className="mt-5">
             <div className="text-gray-500">{lemma.id}</div>
             <h2 className="text-2xl font-bold italic">{lemma.entry}</h2>
-            <p className="text-xl">{lemma.pos}</p>
+            <p className="text-xl">{partsOfSpeech.get(lemma.pos) || `Undefined part of speech: ${lemma.pos}`}</p>
             <Paradigm lemma={lemma}/>
             <GlossONP id={lemma.linkONP}/>
         </div>

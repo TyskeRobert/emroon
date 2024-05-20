@@ -4,6 +4,7 @@ import InvoiceStatus from '@/app/ui/lexicon/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredForms, fetchFilteredLemmata } from '@/app/lib/data';
 import { FormLink, LemmaLink, ONPLink } from '@/app/ui/links';
+import { partsOfSpeech } from '@/app/lib/vocabularies';
 
 export async function LexiconTable({
   query,
@@ -32,7 +33,11 @@ export async function LexiconTable({
                         <ONPLink id={lemma.linkonp}/>
                       </div>
                     </div>
-                    <p><i>{lemma.entry}</i>, {lemma.pos} <LemmaLink id={lemma.id}/></p>
+                    <p>
+                      <i>{lemma.entry}</i>, 
+                      {partsOfSpeech.get(lemma.pos) || `Unknown part of speech: ${lemma.pos}`} 
+                      <LemmaLink id={lemma.id}/>
+                    </p>
                   </div>
                   {/*
                   <InvoiceStatus status={invoice.status} />
@@ -108,7 +113,7 @@ export async function LexiconTable({
                     <i>{lemma.entry}</i>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {lemma.pos}
+                    {partsOfSpeech.get(lemma.pos) || `Unknown part of speech: ${lemma.pos}`}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <ONPLink id={lemma.linkonp}/>
