@@ -143,6 +143,7 @@ export async function getUser(email: string) {
 // My stuff
 
 export async function fetchCardData() {
+  noStore();
   try {
     const entriesCountPromise = sql`
       SELECT COUNT(*) 
@@ -189,6 +190,7 @@ export async function fetchFilteredLemmata(
   currentPage: number
 ) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+  noStore();
 
   try {
     const lemmata = await sql<LemmaTable>`
@@ -213,6 +215,7 @@ export async function fetchFilteredForms(
   currentPage: number
 ) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+  noStore();
 
   try {
     const forms = await sql<FormTable>`
@@ -233,6 +236,7 @@ export async function fetchFilteredForms(
 }
 
 export async function fetchLexiconPages(query: string) {
+  noStore();
   try {
     const count = await sql`
       SELECT COUNT(*)
@@ -251,6 +255,7 @@ export async function fetchLexiconPages(query: string) {
 }
 
 export async function fetchFormsPages(query: string) {
+  noStore();
   try {
     const count = await sql`
       SELECT COUNT(*)
