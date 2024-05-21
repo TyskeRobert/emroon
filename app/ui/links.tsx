@@ -2,6 +2,8 @@ import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 
+import { FormTable } from "../lib/definitions";
+
 export function ONPLink({ id }: { id: string}) {
     const link = (
         <Link href={`https://onp.ku.dk/onp/onp.php?${id}`} target="_blank">
@@ -24,10 +26,13 @@ export function LemmaLink({ id }: { id: string }) {
     );
 }
 
-export function FormLink({ id }: { id: string }) {
+export function FormLink({ form, icon }: { form: FormTable, icon: boolean }) {
     return (
-        <Link href={`/lexicon/forms/${id}`} className="hover:text-green-700">
-            <ArrowRightCircleIcon className="w-6 inline mr-2"/>
+        <Link href={`/lexicon/forms/${form.id}`} className="hover:text-green-700">
+            {icon ? 
+                <ArrowRightCircleIcon className="w-6 inline mr-2"/> :
+                <i>{form.norm}</i>
+            }
         </Link>
     )
 }

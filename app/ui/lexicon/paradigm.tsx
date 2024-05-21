@@ -1,5 +1,6 @@
 import { LemmaFull } from "@/app/lib/definitions"
 import clsx from "clsx";
+import { FormLink } from "@/app/ui/links";
 
 export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
     return (
@@ -1012,7 +1013,12 @@ function FormCell({
         <td colSpan={colSpan || 1} className="p-2 border-2 border-gray-50 text-center italic">
             {hits
                 .slice().sort((a, b) => a.norm.localeCompare(b.norm))
-                .map(form => <span key={form.id}>{form.norm}<br/></span>)}
+                .map(form => 
+                    <span key={form.id}>
+                        <FormLink form={form} icon={false}/>
+                        <br/>
+                    </span>
+                )}
         </td>
     );
 }

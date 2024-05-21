@@ -165,7 +165,7 @@ export async function FormsTable({
                     <div className="mb-2 flex items-center text-sm text-gray-500">
                       <div>{form.id}</div>
                     </div>
-                    <p><i>{form.norm}</i> <FormLink id={form.id}/></p>
+                    <p><i>{form.norm}</i> <FormLink form={form} icon={true}/></p>
                   </div>
                 </div>
               </div>
@@ -204,7 +204,7 @@ export async function FormsTable({
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    <FormLink id={form.id}/>
+                    <FormLink form={form} icon={true}/>
                     <i>{form.norm}</i>
                   </td>
                 </tr>
