@@ -34,9 +34,9 @@ export async function LexiconTable({
                       </div>
                     </div>
                     <p>
-                      <i>{lemma.entry}</i>, 
-                      {partsOfSpeech.get(lemma.pos) || `Unknown part of speech: ${lemma.pos}`} 
                       <LemmaLink id={lemma.id}/>
+                      <i>{lemma.entry}</i>,{' '}
+                      {partsOfSpeech.get(lemma.pos) || `Unknown part of speech: ${lemma.pos}`} 
                     </p>
                   </div>
                   {/*
@@ -165,7 +165,10 @@ export async function FormsTable({
                     <div className="mb-2 flex items-center text-sm text-gray-500">
                       <div>{form.id}</div>
                     </div>
-                    <p><i>{form.norm}</i> <FormLink form={form} icon={true}/></p>
+                    <p>
+                      <FormLink form={form} icon={true}/>
+                      <i>{form.norm}</i>
+                    </p>
                   </div>
                 </div>
               </div>
