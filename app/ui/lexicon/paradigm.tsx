@@ -196,7 +196,7 @@ function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
                 </tbody>
             </ParadigmTable>
             <ParadigmTable 
-                condition={/^----p...i$/} 
+                condition={/^----p...d$/} 
                 lemma={lemma} 
                 caption="Weak positive" 
                 size="small"
@@ -254,7 +254,12 @@ function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
                     </tr>
                 </tbody>
             </ParadigmTable>
-            <ParadigmTable condition={/^----c....$/} lemma={lemma} caption="Comparative">
+            <ParadigmTable 
+                condition={/^----c....$/} 
+                lemma={lemma} 
+                caption="Comparative"
+                size="full"
+            >
                 <thead className="pt-3">
                     <tr>
                         <ParadigmHead rowSpan={2}/>
@@ -294,6 +299,65 @@ function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
                         <FormCell lemma={lemma} morph="----cmsad"/>
                         <FormCell lemma={lemma} morph="----cfsad"/>
                         <FormCell lemma={lemma} morph="----cnsad"/>
+                        <FormCell lemma={lemma} morph="----cxpad" colSpan={3}/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+            <ParadigmTable
+                condition={/^----c....$/} 
+                lemma={lemma} 
+                caption="Comparative"
+                size="small"
+            >
+                <thead className="pt-3">
+                    <tr>
+                        <ParadigmHead colSpan={2}/>
+                        <ParadigmHead label="m"/>
+                        <ParadigmHead label="f"/>
+                        <ParadigmHead label="n"/>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="sg" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="----cmsnd"/>
+                        <FormCell lemma={lemma} morph="----cfsnd"/>
+                        <FormCell lemma={lemma} morph="----cnsnd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="----cmsgd"/>
+                        <FormCell lemma={lemma} morph="----cfsgd"/>
+                        <FormCell lemma={lemma} morph="----cnsgd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="----cmsdd"/>
+                        <FormCell lemma={lemma} morph="----cfsdd"/>
+                        <FormCell lemma={lemma} morph="----cnsdd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
+                        <FormCell lemma={lemma} morph="----cmsad"/>
+                        <FormCell lemma={lemma} morph="----cfsad"/>
+                        <FormCell lemma={lemma} morph="----cnsad"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="pl" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="----cxpnd" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="----cxpgd" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="----cxpdd" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
                         <FormCell lemma={lemma} morph="----cxpad" colSpan={3}/>
                     </tr>
                 </tbody>
@@ -379,7 +443,11 @@ function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
                     </tr>
                 </tbody>
             </ParadigmTable>
-            <ParadigmTable condition={/^----e....$/} lemma={lemma} caption="Equative">
+            <ParadigmTable 
+                condition={/^----e....$/} 
+                lemma={lemma} 
+                caption="Equative"
+            >
                 <thead className="pt-3">
                     <tr>
                         <ParadigmHead colSpan={2} rowSpan={2}/>
@@ -1179,17 +1247,16 @@ function ParadigmTable({
     caption?: string,
     size?: "small" | "full"
 }) {
+    const hide = condition && !exclude && !lemma?.forms.filter(
+        form => form.morph.match(condition || /^.........$/)
+    ).length;
     return (
         <table className={clsx(
             "my-4 min-w-[200px] border-4 border-gray-50 bg-gray-50",
             {
-                "hidden md:table": size && size == "full",
-                "md:hidden": size && size == "small"
-            },
-            {
-                "hidden": condition && !exclude && !lemma?.forms.filter(
-                    form => form.morph.match(condition || /^.........$/)
-                ).length
+                "hidden md:table": size && size == "full" && !hide,
+                "md:hidden": size && size == "small" && !hide,
+                "hidden": hide
             }
         )}>
             {caption ? <Caption label={caption}/> : null}
