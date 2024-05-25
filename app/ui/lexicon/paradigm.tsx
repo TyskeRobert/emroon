@@ -362,7 +362,12 @@ function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
                     </tr>
                 </tbody>
             </ParadigmTable>
-            <ParadigmTable condition={/^----s....$/} lemma={lemma} caption="Superlative">
+            <ParadigmTable 
+                condition={/^----s....$/} 
+                lemma={lemma} 
+                caption="Superlative"
+                size="full"
+            >
                 <thead className="pt-3">
                     <tr>
                         <ParadigmHead colSpan={2} rowSpan={2}/>
@@ -439,6 +444,128 @@ function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
                         <FormCell lemma={lemma} morph="----smsad"/>
                         <FormCell lemma={lemma} morph="----sfsad"/>
                         <FormCell lemma={lemma} morph="----snsad"/>
+                        <FormCell lemma={lemma} morph="----sxpad" colSpan={3}/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+            <ParadigmTable 
+                condition={/^----s...i$/} 
+                lemma={lemma} 
+                caption="Strong superlative" 
+                size="small"
+            >
+                <thead className="pt-3">
+                    <tr>
+                        <ParadigmHead colSpan={2}/>
+                        <ParadigmHead label="m"/>
+                        <ParadigmHead label="f"/>
+                        <ParadigmHead label="n"/>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="sg" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="----smsni"/>
+                        <FormCell lemma={lemma} morph="----sfsni"/>
+                        <FormCell lemma={lemma} morph="----snsni"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="----smsgi"/>
+                        <FormCell lemma={lemma} morph="----sfsgi"/>
+                        <FormCell lemma={lemma} morph="----snsgi"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="----smsdi"/>
+                        <FormCell lemma={lemma} morph="----sfsdi"/>
+                        <FormCell lemma={lemma} morph="----snsdi"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
+                        <FormCell lemma={lemma} morph="----smsai"/>
+                        <FormCell lemma={lemma} morph="----sfsai"/>
+                        <FormCell lemma={lemma} morph="----snsai"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="pl" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="----smpni"/>
+                        <FormCell lemma={lemma} morph="----sfpni"/>
+                        <FormCell lemma={lemma} morph="----snpni"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="----sxpgi" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="----sxpdi" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
+                        <FormCell lemma={lemma} morph="----smpai"/>
+                        <FormCell lemma={lemma} morph="----sfpai"/>
+                        <FormCell lemma={lemma} morph="----snpai"/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+            <ParadigmTable 
+                condition={/^----s...d$/} 
+                lemma={lemma} 
+                caption="Weak superlative" 
+                size="small"
+            >
+                <thead className="pt-3">
+                    <tr>
+                        <ParadigmHead colSpan={2}/>
+                        <ParadigmHead label="m"/>
+                        <ParadigmHead label="f"/>
+                        <ParadigmHead label="n"/>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="sg" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="----smsnd"/>
+                        <FormCell lemma={lemma} morph="----sfsnd"/>
+                        <FormCell lemma={lemma} morph="----snsnd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="----smsgd"/>
+                        <FormCell lemma={lemma} morph="----sfsgd"/>
+                        <FormCell lemma={lemma} morph="----snsgd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="----smsdd"/>
+                        <FormCell lemma={lemma} morph="----sfsdd"/>
+                        <FormCell lemma={lemma} morph="----snsdd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
+                        <FormCell lemma={lemma} morph="----smsad"/>
+                        <FormCell lemma={lemma} morph="----sfsad"/>
+                        <FormCell lemma={lemma} morph="----snsad"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="pl" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="----sxpnd" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="----sxpgd" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="----sxpdd" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
                         <FormCell lemma={lemma} morph="----sxpad" colSpan={3}/>
                     </tr>
                 </tbody>
