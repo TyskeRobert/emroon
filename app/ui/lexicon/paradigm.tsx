@@ -784,26 +784,48 @@ function AdjectiveTable({ lemma }: { lemma: LemmaFull }) {
 
 function AdverbTable({ lemma }: { lemma: LemmaFull }) {
     return (
-        <ParadigmTable>
-            <tbody className="bg-white">
-                <tr>
-                    <ParadigmHead label="positive"/>
-                    <FormCell lemma={lemma} morph="----p----"/>
-                </tr>
-                <tr>
-                    <ParadigmHead label="comparative"/>
-                    <FormCell lemma={lemma} morph="----c----"/>
-                </tr>
-                <tr>
-                    <ParadigmHead label="superlative"/>
-                    <FormCell lemma={lemma} morph="----s----"/>
-                </tr>
-                <tr>
-                    <ParadigmHead label="equative"/>
-                    <FormCell lemma={lemma} morph="----e----"/>
-                </tr>
-            </tbody>
-        </ParadigmTable>
+        <>
+            <ParadigmTable size="full">
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="positive"/>
+                        <FormCell lemma={lemma} morph="----p----"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="comparative"/>
+                        <FormCell lemma={lemma} morph="----c----"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="superlative"/>
+                        <FormCell lemma={lemma} morph="----s----"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="equative"/>
+                        <FormCell lemma={lemma} morph="----e----"/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+            <ParadigmTable size="small">
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="pos"/>
+                        <FormCell lemma={lemma} morph="----p----"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="com"/>
+                        <FormCell lemma={lemma} morph="----c----"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="sup"/>
+                        <FormCell lemma={lemma} morph="----s----"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="equ"/>
+                        <FormCell lemma={lemma} morph="----e----"/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+        </>
     );
 }
 
