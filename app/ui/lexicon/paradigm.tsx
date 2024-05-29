@@ -840,7 +840,12 @@ function DeterminerTable({ lemma }: { lemma: LemmaFull }) {
                     </tr>
                 </tbody>
             </ParadigmTable>
-            <ParadigmTable lemma={lemma} condition={/^-----xpx-$/} exclude={true}>
+            <ParadigmTable 
+                lemma={lemma} 
+                condition={/^-----xpx-$/} 
+                exclude={true}
+                size="full"
+            >
                 <thead className="pt-3">
                     <tr>
                         <ParadigmHead rowSpan={2}/>
@@ -885,6 +890,69 @@ function DeterminerTable({ lemma }: { lemma: LemmaFull }) {
                         <FormCell lemma={lemma} morph="-----msa-"/>
                         <FormCell lemma={lemma} morph="-----fsa-"/>
                         <FormCell lemma={lemma} morph="-----nsa-"/>
+                        <FormCell lemma={lemma} morph="-----mpa-"/>
+                        <FormCell lemma={lemma} morph="-----fpa-"/>
+                        <FormCell lemma={lemma} morph="-----npa-"/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+            <ParadigmTable
+                lemma={lemma} 
+                condition={/^-----xpx-$/} 
+                exclude={true}
+                size="small"
+            >
+                <thead className="pt-3">
+                    <tr>
+                        <ParadigmHead colSpan={2}/>
+                        <ParadigmHead label="m"/>
+                        <ParadigmHead label="f"/>
+                        <ParadigmHead label="n"/>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="sg" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="-----msn-"/>
+                        <FormCell lemma={lemma} morph="-----fsn-"/>
+                        <FormCell lemma={lemma} morph="-----nsn-"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="-----msg-"/>
+                        <FormCell lemma={lemma} morph="-----fsg-"/>
+                        <FormCell lemma={lemma} morph="-----nsg-"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="-----msd-"/>
+                        <FormCell lemma={lemma} morph="-----fsd-"/>
+                        <FormCell lemma={lemma} morph="-----nsd-"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
+                        <FormCell lemma={lemma} morph="-----msa-"/>
+                        <FormCell lemma={lemma} morph="-----fsa-"/>
+                        <FormCell lemma={lemma} morph="-----nsa-"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="pl" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="-----mpn-"/>
+                        <FormCell lemma={lemma} morph="-----fpn-"/>
+                        <FormCell lemma={lemma} morph="-----npn-"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="-----xpg-" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="-----xpd-" colSpan={3}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
                         <FormCell lemma={lemma} morph="-----mpa-"/>
                         <FormCell lemma={lemma} morph="-----fpa-"/>
                         <FormCell lemma={lemma} morph="-----npa-"/>
