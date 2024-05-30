@@ -32,6 +32,7 @@ export default function Paradigm({ lemma }: { lemma: LemmaFull }) {
                     case "ap":
                     case "cc":
                     case "cs":
+                    case "ex":
                     case "fn":
                     case "fw":
                     case "im":

@@ -7,6 +7,7 @@ export const partsOfSpeech = new Map([
     ["dd", "demonstrative determiner"],
     ["dp", "possessive determiner"],
     ["dq", "quantifier"],
+    ["ex", "exclamation"],
     ["fn", "foreign name"],
     ["fw", "foreign word"],
     ["im", "infinitive marker"],
