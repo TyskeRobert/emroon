@@ -966,51 +966,106 @@ function DeterminerTable({ lemma }: { lemma: LemmaFull }) {
 
 function NounTable({ lemma }: { lemma: LemmaFull }) {
     return (
-        <ParadigmTable>
-            <thead className="pt-3">
-                <tr>
-                    <ParadigmHead rowSpan={2}/>
-                    <ParadigmHead label="singular" colSpan={2}/>
-                    <ParadigmHead label="plural" colSpan={2}/>
-                </tr>
-                <tr>
-                    <ParadigmHead label="indefinite"/>
-                    <ParadigmHead label="definite"/>
-                    <ParadigmHead label="indefinite"/>
-                    <ParadigmHead label="definite"/>
-                </tr>
-            </thead>
-            <tbody className="bg-white">
-                <tr>
-                    <ParadigmHead label="nominative"/>
-                    <FormCell lemma={lemma} morph="------sni"/>
-                    <FormCell lemma={lemma} morph="------snd"/>
-                    <FormCell lemma={lemma} morph="------pni"/>
-                    <FormCell lemma={lemma} morph="------pnd"/>
-                </tr>
-                <tr>
-                    <ParadigmHead label="genitive"/>
-                    <FormCell lemma={lemma} morph="------sgi"/>
-                    <FormCell lemma={lemma} morph="------sgd"/>
-                    <FormCell lemma={lemma} morph="------pgi"/>
-                    <FormCell lemma={lemma} morph="------pgd"/>
-                </tr>
-                <tr>
-                    <ParadigmHead label="dative"/>
-                    <FormCell lemma={lemma} morph="------sdi"/>
-                    <FormCell lemma={lemma} morph="------sdd"/>
-                    <FormCell lemma={lemma} morph="------pdi"/>
-                    <FormCell lemma={lemma} morph="------pdd"/>
-                </tr>
-                <tr>
-                    <ParadigmHead label="accusative"/>
-                    <FormCell lemma={lemma} morph="------sai"/>
-                    <FormCell lemma={lemma} morph="------sad"/>
-                    <FormCell lemma={lemma} morph="------pai"/>
-                    <FormCell lemma={lemma} morph="------pad"/>
-                </tr>
-            </tbody>
-        </ParadigmTable>
+        <>
+            <ParadigmTable size="full">
+                <thead className="pt-3">
+                    <tr>
+                        <ParadigmHead rowSpan={2}/>
+                        <ParadigmHead label="singular" colSpan={2}/>
+                        <ParadigmHead label="plural" colSpan={2}/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="indefinite"/>
+                        <ParadigmHead label="definite"/>
+                        <ParadigmHead label="indefinite"/>
+                        <ParadigmHead label="definite"/>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="nominative"/>
+                        <FormCell lemma={lemma} morph="------sni"/>
+                        <FormCell lemma={lemma} morph="------snd"/>
+                        <FormCell lemma={lemma} morph="------pni"/>
+                        <FormCell lemma={lemma} morph="------pnd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="genitive"/>
+                        <FormCell lemma={lemma} morph="------sgi"/>
+                        <FormCell lemma={lemma} morph="------sgd"/>
+                        <FormCell lemma={lemma} morph="------pgi"/>
+                        <FormCell lemma={lemma} morph="------pgd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dative"/>
+                        <FormCell lemma={lemma} morph="------sdi"/>
+                        <FormCell lemma={lemma} morph="------sdd"/>
+                        <FormCell lemma={lemma} morph="------pdi"/>
+                        <FormCell lemma={lemma} morph="------pdd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="accusative"/>
+                        <FormCell lemma={lemma} morph="------sai"/>
+                        <FormCell lemma={lemma} morph="------sad"/>
+                        <FormCell lemma={lemma} morph="------pai"/>
+                        <FormCell lemma={lemma} morph="------pad"/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+            <ParadigmTable size="small">
+                <thead className="pt-3">
+                    <tr>
+                        <ParadigmHead colSpan={2}/>
+                        <ParadigmHead label="idf"/>
+                        <ParadigmHead label="def"/>
+                    </tr>
+                </thead>
+                <tbody className="bg-white">
+                    <tr>
+                        <ParadigmHead label="sg" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="------sni"/>
+                        <FormCell lemma={lemma} morph="------snd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="------sgi"/>
+                        <FormCell lemma={lemma} morph="------sgd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="------sdi"/>
+                        <FormCell lemma={lemma} morph="------sdd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
+                        <FormCell lemma={lemma} morph="------sai"/>
+                        <FormCell lemma={lemma} morph="------sad"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="pl" rowSpan={4}/>
+                        <ParadigmHead label="nom"/>
+                        <FormCell lemma={lemma} morph="------pni"/>
+                        <FormCell lemma={lemma} morph="------pnd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="gen"/>
+                        <FormCell lemma={lemma} morph="------pgi"/>
+                        <FormCell lemma={lemma} morph="------pgd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="dat"/>
+                        <FormCell lemma={lemma} morph="------pdi"/>
+                        <FormCell lemma={lemma} morph="------pdd"/>
+                    </tr>
+                    <tr>
+                        <ParadigmHead label="acc"/>
+                        <FormCell lemma={lemma} morph="------pai"/>
+                        <FormCell lemma={lemma} morph="------pad"/>
+                    </tr>
+                </tbody>
+            </ParadigmTable>
+        </>
     );
 }
 
