@@ -1640,7 +1640,7 @@ function VerbTable({ lemma }: { lemma: LemmaFull}) {
             <ParadigmTable 
                 lemma={lemma} 
                 condition={/^g----....$/} 
-                caption="Participle" 
+                caption="Gerundive" 
                 size="small"
             >
                 <thead>
