@@ -183,6 +183,21 @@ export async function FormsTable({
                 <th scope="col" className="px-3 py-5 w-1 font-medium">
                   Norm
                 </th>
+                <th scope="col" className="px-3 py-5 w-1 font-medium">
+                  Morphology
+                </th>
+                <th scope="col" className="px-3 py-5 w-1 font-medium">
+                  Lemma ID
+                </th>
+                <th scope="col" className="px-3 py-5 w-1 font-medium">
+                  Entry
+                </th>
+                <th scope="col" className="px-3 py-5 w-1 font-medium">
+                  PoS
+                </th>
+                <th scope="col" className="px-3 py-5 w-1 font-medium">
+                  Link ONP
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white">
@@ -210,6 +225,11 @@ export async function FormsTable({
                     <FormLink form={form} icon={true}/>
                     <i>{form.norm}</i>
                   </td>
+                  <td className="whitespace-nowrap px-3 py-3">{form.morph}</td>
+                  <td className="whitespace-nowrap px-3 py-3">{form.lemmaid}</td>
+                  <td className="whitespace-nowrap px-3 py-3">{form.entry}</td>
+                  <td className="whitespace-nowrap px-3 py-3">{form.pos}</td>
+                  <td className="whitespace-nowrap px-3 py-3">{form.linkonp}</td>
                 </tr>
               ))}
             </tbody>

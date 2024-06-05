@@ -2,7 +2,7 @@ import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 
-import { FormTable } from "../lib/definitions";
+import { FormSimple } from "../lib/definitions";
 
 export function ONPLink({ id }: { id: string}) {
     const link = (
@@ -26,7 +26,7 @@ export function LemmaLink({ id }: { id: string }) {
     );
 }
 
-export function FormLink({ form, icon }: { form: FormTable, icon: boolean }) {
+export function FormLink({ form, icon }: { form: FormSimple, icon: boolean }) {
     return (
         <Link href={`/lexicon/forms/${form.id}`} className="hover:text-green-700">
             {icon ? 

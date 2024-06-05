@@ -2,12 +2,12 @@ import { sql } from '@vercel/postgres';
 import {
   CustomerField,
   CustomersTableType,
-  FormTable,
   InvoiceForm,
   LatestInvoiceRaw,
   LemmaTable,
   User,
   Revenue,
+  FormWithLemma,
 } from './definitions';
 import { formatCurrency } from './utils';
 import { unstable_noStore as noStore } from 'next/cache';
@@ -218,13 +218,13 @@ export async function fetchFilteredForms(
   noStore();
 
   try {
-    const forms = await sql<FormTable>`
-      SELECT id, norm, morph
-      FROM forms
+    const forms = await sql<FormWithLemma>`
+      SELECT forms.id, norm, morph, lemmaid, entry, pos, linkonp
+      FROM forms JOIN lexicon ON forms.lemmaid = lexicon.id
       WHERE
         norm ILIKE ${`${query}%`} AND
-        NOT norm='?' AND
-        NOT id ILIKE '%F0'
+        norm != '?' AND
+        formid != 'F0'
       ORDER BY LOWER(norm) ASC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};
     `;
