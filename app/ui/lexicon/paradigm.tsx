@@ -1734,7 +1734,7 @@ function FormCell({
                 .slice().sort((a, b) => a.norm.localeCompare(b.norm))
                 .map(form => 
                     <span key={form.id}>
-                        <FormLink form={form} icon={false}/>
+                        <FormLink id={form.id} label={form.norm}/>
                         <br/>
                     </span>
                 )}

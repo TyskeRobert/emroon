@@ -166,7 +166,7 @@ export async function FormsTable({
                       <div>{form.id}</div>
                     </div>
                     <p>
-                      <FormLink form={form} icon={true}/>
+                      <FormLink id={form.id}/>
                       <i>{form.norm}</i>
                     </p>
                   </div>
@@ -177,26 +177,17 @@ export async function FormsTable({
           <table className="hidden min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
-                <th scope="col" className="px-4 py-5 w-1 font-medium sm:pl-6">
+                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                   ID
                 </th>
-                <th scope="col" className="px-3 py-5 w-1 font-medium">
+                <th scope="col" className="px-3 py-5 font-medium">
                   Norm
                 </th>
-                <th scope="col" className="px-3 py-5 w-1 font-medium">
+                <th scope="col" className="px-3 py-5 font-medium">
                   Morphology
                 </th>
-                <th scope="col" className="px-3 py-5 w-1 font-medium">
-                  Lemma ID
-                </th>
-                <th scope="col" className="px-3 py-5 w-1 font-medium">
-                  Entry
-                </th>
-                <th scope="col" className="px-3 py-5 w-1 font-medium">
-                  PoS
-                </th>
-                <th scope="col" className="px-3 py-5 w-1 font-medium">
-                  Link ONP
+                <th scope="col" className="px-3 py-5 font-medium">
+                  Lemma
                 </th>
               </tr>
             </thead>
@@ -222,14 +213,14 @@ export async function FormsTable({
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    <FormLink form={form} icon={true}/>
+                    <FormLink id={form.id}/>
                     <i>{form.norm}</i>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">{form.morph}</td>
-                  <td className="whitespace-nowrap px-3 py-3">{form.lemmaid}</td>
-                  <td className="whitespace-nowrap px-3 py-3">{form.entry}</td>
-                  <td className="whitespace-nowrap px-3 py-3">{form.pos}</td>
-                  <td className="whitespace-nowrap px-3 py-3">{form.linkonp}</td>
+                  <td className="whitespace-nowrap px-3 py-3">
+                    <LemmaLink id={form.lemmaid} label={form.entry}/>,{' '}
+                    {form.pos}
+                  </td>
                 </tr>
               ))}
             </tbody>

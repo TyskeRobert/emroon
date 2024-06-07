@@ -18,20 +18,23 @@ export function ONPLink({ id }: { id: string}) {
     return id ? link : null;
 }
 
-export function LemmaLink({ id }: { id: string }) {
+export function LemmaLink({ id, label }: { id: string, label?: string }) {
     return (
         <Link href={`/lexicon/lemmata/${id}`} className="hover:text-green-700">
-            <ArrowRightCircleIcon className="w-6 inline mr-2"/>
+            {label ?
+                <i>{label}</i> :
+                <ArrowRightCircleIcon className="w-6 inline mr-2"/> 
+            }
         </Link>
     );
 }
 
-export function FormLink({ form, icon }: { form: FormSimple, icon: boolean }) {
+export function FormLink({ id, label }: { id: string, label?: string }) {
     return (
-        <Link href={`/lexicon/forms/${form.id}`} className="hover:text-green-700">
-            {icon ? 
-                <ArrowRightCircleIcon className="w-6 inline mr-2"/> :
-                <i>{form.norm}</i>
+        <Link href={`/lexicon/forms/${id}`} className="hover:text-green-700">
+            {label ? 
+                <i>{label}</i> :
+                <ArrowRightCircleIcon className="w-6 inline mr-2"/>
             }
         </Link>
     )
