@@ -4,7 +4,7 @@ import InvoiceStatus from '@/app/ui/lexicon/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredForms, fetchFilteredLemmata } from '@/app/lib/data';
 import { FormLink, LemmaLink, ONPLink } from '@/app/ui/links';
-import { partsOfSpeech } from '@/app/lib/vocabularies';
+import { partsOfSpeech, prettifyMorph } from '@/app/lib/vocabularies';
 
 export async function LexiconTable({
   query,
@@ -216,7 +216,9 @@ export async function FormsTable({
                     <FormLink id={form.id}/>
                     <i>{form.norm}</i>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">{form.morph}</td>
+                  <td className="whitespace-nowrap px-3 py-3">
+                    {prettifyMorph(form.pos, form.morph)}
+                  </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <LemmaLink id={form.lemmaid} label={form.entry}/>,{' '}
                     {form.pos}

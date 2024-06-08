@@ -16,7 +16,6 @@ export default function GlossONP({ id }: { id: string }) {
             });
     }, []);
 
-    if (!id) return null;
     if (isLoading) return <p>Loading ...</p>
     if (!data) return <p>No ONP lemma with the ID {id} could be found.</p>
 
