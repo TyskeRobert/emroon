@@ -89,6 +89,7 @@ export function prettifyMorph(pos: string, morph: string) {
                 a.push(nominalSpecificities.get(morph[8])?.short);
             break;
         case "ap":
+        case "cc":
             return "-";
         default:
             return morph;
