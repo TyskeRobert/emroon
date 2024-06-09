@@ -74,6 +74,9 @@ export function prettifyMorph(pos: string, morph: string) {
             if (morph[8] == "d" && morph[4] != "c")
                 a.push(adjectivalSpecificities.get(morph[8])?.short);
             break;
+        case "av":
+            a.push(grades.get(morph[4])?.short);
+            break;
         case "nc.m":
         case "nc.f":
         case "nc.n":
