@@ -47,7 +47,8 @@ const cases = new Map([
     ["n", {short: "nom", full: "nominative"}],
     ["g", {short: "gen", full: "genitive"}],
     ["d", {short: "dat", full: "dative"}],
-    ["a", {short: "acc", full: "accusative"}]
+    ["a", {short: "acc", full: "accusative"}],
+    ["x", {short: "x", full: "unspecified"}]
 ]);
 
 const nominalSpecificities = new Map([
@@ -78,7 +79,9 @@ export function prettifyMorph(pos: string, morph: string) {
             a.push(grades.get(morph[4])?.short);
             break;
         case "dd":
-            a.push(cases.get(morph[7])?.short);
+        case "dq":
+            if (morph[7] != "x")
+                a.push(cases.get(morph[7])?.short);
             a.push(numbers.get(morph[6])?.short);
             if (morph[5] != "x")
                 a.push(genders.get(morph[5])?.short);
