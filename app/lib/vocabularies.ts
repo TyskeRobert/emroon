@@ -80,6 +80,7 @@ export function prettifyMorph(pos: string, morph: string) {
         case "dd":
         case "dq":
         case "pi":
+        case "pq":
             if (morph[7] != "x")
                 a.push(cases.get(morph[7])?.short);
             a.push(numbers.get(morph[6])?.short);
