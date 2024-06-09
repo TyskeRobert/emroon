@@ -160,15 +160,24 @@ export async function FormsTable({
                 key={form.id}
                 className="mb-2 w-full rounded-md bg-white p-4"
               >
-                <div className="flex items-center justify-between border-b pb-4">
-                  <div>
+                <div className="flex w-full items-center justify-between border-b pb-4">
+                  <div className="w-full">
                     <div className="mb-2 flex items-center text-sm text-gray-500">
                       <div>{form.id}</div>
                     </div>
-                    <p>
-                      <FormLink id={form.id}/>
-                      <i>{form.norm}</i>
-                    </p>
+                    <div className="w-full">
+                      <div>
+                        <FormLink id={form.id}/>
+                        <i>{form.norm}</i>
+                      </div>
+                      <div className="w-full flex justify-between items-center">
+                        <div className="px-8 font-mono text-xs">{prettifyMorph(form.pos, form.morph)}</div>
+                        <div>
+                          <LemmaLink id={form.lemmaid} label={form.entry}/>{", "}
+                          {form.pos}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
