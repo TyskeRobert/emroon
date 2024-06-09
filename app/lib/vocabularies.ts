@@ -90,6 +90,7 @@ export function prettifyMorph(pos: string, morph: string) {
             break;
         case "ap":
         case "cc":
+        case "cs":
             return "-";
         default:
             return morph;
