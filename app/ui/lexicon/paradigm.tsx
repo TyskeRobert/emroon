@@ -975,10 +975,10 @@ function NounTable({ lemma }: { lemma: LemmaFull }) {
                         <ParadigmHead label="plural" colSpan={2}/>
                     </tr>
                     <tr>
-                        <ParadigmHead label="indefinite"/>
-                        <ParadigmHead label="definite"/>
-                        <ParadigmHead label="indefinite"/>
-                        <ParadigmHead label="definite"/>
+                        <ParadigmHead label="indetermined"/>
+                        <ParadigmHead label="determined"/>
+                        <ParadigmHead label="indetermined"/>
+                        <ParadigmHead label="determined"/>
                     </tr>
                 </thead>
                 <tbody className="bg-white">
@@ -1016,8 +1016,8 @@ function NounTable({ lemma }: { lemma: LemmaFull }) {
                 <thead className="pt-3">
                     <tr>
                         <ParadigmHead colSpan={2}/>
-                        <ParadigmHead label="idf"/>
-                        <ParadigmHead label="def"/>
+                        <ParadigmHead label="idt"/>
+                        <ParadigmHead label="det"/>
                     </tr>
                 </thead>
                 <tbody className="bg-white">

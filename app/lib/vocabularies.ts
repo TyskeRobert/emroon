@@ -24,6 +24,20 @@ export const partsOfSpeech = new Map([
     ["vb.r", "reflexive verb"]
 ]);
 
+const grades = new Map([
+    ["p", {short: "pos", full: "positive"}],
+    ["c", {short: "com", full: "comparative"}],
+    ["s", {short: "sup", full: "superlative"}],
+    ["e", {short: "equ", full: "equative"}]
+]);
+
+const genders = new Map([
+    ["m", {short: "m", full: "masculine"}],
+    ["f", {short: "f", full: "feminine"}],
+    ["n", {short: "n", full: "neuter"}],
+    ["x", {short: "x", full: "unspecified"}]
+]);
+
 const numbers = new Map([
     ["s", {short: "sg", full: "singular"}],
     ["p", {short: "pl", full: "plural"}]
@@ -41,10 +55,25 @@ const nominalSpecificities = new Map([
     ["d", {short: "det", full: "determined"}]
 ]);
 
+const adjectivalSpecificities = new Map([
+    ["i", {short: "st", full: "strong"}],
+    ["d", {short: "wk", full: "weak"}]
+]);
+
 export function prettifyMorph(pos: string, morph: string) {
     if (!morph) return "";
     const a = [];
     switch (pos) {
+        case "aj":
+            if (morph[4] != "p")
+                a.push(grades.get(morph[4])?.short);
+            a.push(cases.get(morph[7])?.short);
+            a.push(numbers.get(morph[6])?.short);
+            if (morph[5] != "x")
+                a.push(genders.get(morph[5])?.short);
+            if (morph[8] == "d" && morph[4] != "c")
+                a.push(adjectivalSpecificities.get(morph[8])?.short);
+            break;
         case "nc.m":
         case "nc.f":
         case "nc.n":
