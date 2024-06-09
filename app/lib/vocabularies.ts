@@ -77,6 +77,12 @@ export function prettifyMorph(pos: string, morph: string) {
         case "av":
             a.push(grades.get(morph[4])?.short);
             break;
+        case "dd":
+            a.push(cases.get(morph[7])?.short);
+            a.push(numbers.get(morph[6])?.short);
+            if (morph[5] != "x")
+                a.push(genders.get(morph[5])?.short);
+            break;
         case "nc.m":
         case "nc.f":
         case "nc.n":
