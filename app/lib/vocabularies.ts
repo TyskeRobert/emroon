@@ -102,6 +102,7 @@ export function prettifyMorph(pos: string, morph: string) {
         case "ex":
         case "fn":
         case "fw":
+        case "im":
             return "-";
         default:
             return morph || "";
