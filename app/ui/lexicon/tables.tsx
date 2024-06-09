@@ -225,7 +225,7 @@ export async function FormsTable({
                     <FormLink id={form.id}/>
                     <i>{form.norm}</i>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-nowrap px-3 py-3 font-mono text-xs">
                     {prettifyMorph(form.pos, form.morph)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
