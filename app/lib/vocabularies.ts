@@ -62,7 +62,6 @@ const adjectivalSpecificities = new Map([
 ]);
 
 export function prettifyMorph(pos: string, morph: string) {
-    if (!morph) return "";
     const a = [];
     switch (pos) {
         case "aj":
@@ -101,9 +100,10 @@ export function prettifyMorph(pos: string, morph: string) {
         case "cc":
         case "cs":
         case "ex":
+        case "fn":
             return "-";
         default:
-            return morph;
+            return morph || "";
     }
     return a.join(".");
 }
