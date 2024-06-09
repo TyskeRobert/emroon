@@ -24,6 +24,26 @@ export const partsOfSpeech = new Map([
     ["vb.r", "reflexive verb"]
 ]);
 
+const states = new Map([
+    ["f", {short: "fin", full: "finite"}],
+    ["i", {short: "inf", full: "infinitive"}],
+    ["s", {short: "spn", full: "supinum"}],
+    ["r", {short: "res", full: "resultative"}],
+    ["p", {short: "ptc", full: "participle"}],
+    ["g", {short: "ger", full: "gerundive"}]
+]);
+
+const tenses = new Map([
+    ["s", {short: "prs", full: "present"}],
+    ["t", {short: "prt", full: "preterite"}]
+]);
+
+const moods = new Map([
+    ["i", {short: "ind", full: "indicative"}],
+    ["o", {short: "opt", full: "optative"}],
+    ["p", {short: "ipv", full: "imperative"}]
+]);
+
 const grades = new Map([
     ["p", {short: "pos", full: "positive"}],
     ["c", {short: "com", full: "comparative"}],
@@ -61,7 +81,7 @@ const adjectivalSpecificities = new Map([
     ["d", {short: "wk", full: "weak"}]
 ]);
 
-export function prettifyMorph(pos: string, morph: string) {
+export function prettifyMorph(pos: string, morph: string): string {
     const a = [];
     switch (pos) {
         case "aj":
@@ -100,6 +120,33 @@ export function prettifyMorph(pos: string, morph: string) {
             break;
         case "pe":
             a.push(cases.get(morph[7])?.short);
+            break;
+        case "vb.a":
+        case "vb.r":
+            if (morph[0] != "f")
+                a.push(states.get(morph[0])?.short);
+            switch (morph[0]) {
+                case "f":
+                    a.push(morph[3] + numbers.get(morph[6])?.short);
+                    a.push(moods.get(morph[2])?.short);
+                    if (morph[2] != "p")
+                        a.push(tenses.get(morph[1])?.short);
+                    break;
+                case "i":
+                    if (morph[1] == "t")
+                        a.push(tenses.get(morph[1])?.short);
+                    break;
+                case "r":
+                    a.push(prettifyMorph("aj", morph));
+                    break;
+                case "p":
+                case "g":
+                    a.push(cases.get(morph[7])?.short);
+                    a.push(numbers.get(morph[6])?.short);
+                    if (morph[5] != "x")
+                        a.push(genders.get(morph[5])?.short);
+                    break;
+            }
             break;
         case "ap":
         case "cc":
