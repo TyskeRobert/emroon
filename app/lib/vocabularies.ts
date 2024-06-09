@@ -96,6 +96,9 @@ export function prettifyMorph(pos: string, morph: string) {
             if (morph[8] == "d")
                 a.push(nominalSpecificities.get(morph[8])?.short);
             break;
+        case "pe":
+            a.push(cases.get(morph[7])?.short);
+            break;
         case "ap":
         case "cc":
         case "cs":
