@@ -85,6 +85,8 @@ export function prettifyMorph(pos: string, morph: string) {
             if (morph[8] == "d")
                 a.push(nominalSpecificities.get(morph[8])?.short);
             break;
+        case "ap":
+            return "-";
         default:
             return morph;
     }
