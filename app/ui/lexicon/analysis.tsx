@@ -1,4 +1,5 @@
 export default function FormalAnalysis({ morph } : { morph: string }) {
+    if (!morph || morph == "---------") return null;
     const state = (s => {
         switch (s) {
             case "f":
