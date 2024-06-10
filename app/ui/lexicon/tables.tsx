@@ -63,19 +63,17 @@ export async function LexiconTable({
           <table className="hidden min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
-                <th scope="col" className="px-4 py-5 w-1 font-medium sm:pl-6">
+                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                   ID
                 </th>
-                <th scope="col" className="px-3 py-5 w-1 font-medium">
+                <th scope="col" className="px-3 py-5 font-medium">
                   Entry
                 </th>
-                <th scope="col" className="px-3 py-5 w-60 font-medium">
+                <th scope="col" className="px-3 py-5 font-medium">
                   Part of speech
                 </th>
-                <th scope="col" className="px-3 py-5 w-60 font-medium">
-                  ONP
-                </th>
                 <th scope="col" className="px-3 py-5 font-medium">
+                  ONP
                 </th>
                 {/*
                 <th scope="col" className="px-3 py-5 font-medium">
@@ -97,6 +95,7 @@ export async function LexiconTable({
                     py-3 
                     text-sm 
                     last-of-type:border-none 
+                    hover:bg-green-100
                     [&:first-child>td:first-child]:rounded-tl-lg 
                     [&:first-child>td:last-child]:rounded-tr-lg 
                     [&:last-child>td:first-child]:rounded-bl-lg 
@@ -117,8 +116,6 @@ export async function LexiconTable({
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <ONPLink id={lemma.linkonp}/>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
                   </td>
                   {/*
                   <td className="whitespace-nowrap px-3 py-3">
@@ -201,7 +198,7 @@ export async function FormsTable({
               </tr>
             </thead>
             <tbody className="bg-white">
-              {forms?.map((form) => (
+              {forms?.map(form => (
                 <tr
                   key={form.id}
                   className={`
@@ -210,6 +207,7 @@ export async function FormsTable({
                     py-3 
                     text-sm 
                     last-of-type:border-none 
+                    hover:bg-green-100
                     [&:first-child>td:first-child]:rounded-tl-lg 
                     [&:first-child>td:last-child]:rounded-tr-lg 
                     [&:last-child>td:first-child]:rounded-bl-lg 
@@ -225,7 +223,7 @@ export async function FormsTable({
                     <FormLink id={form.id}/>
                     <i>{form.norm}</i>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3 font-mono text-xs">
+                  <td className="whitespace-nowra px-3 py-3 font-mono text-xs">
                     {prettifyMorph(form.pos, form.morph)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
