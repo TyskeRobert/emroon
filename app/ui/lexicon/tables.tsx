@@ -36,7 +36,7 @@ export async function LexiconTable({
                     <p>
                       <LemmaLink id={lemma.id}/>
                       <i>{lemma.entry}</i>,{' '}
-                      {partsOfSpeech.get(lemma.pos) || `Unknown part of speech: ${lemma.pos}`} 
+                      {partsOfSpeech.get(lemma.pos)?.full || `Unknown part of speech: ${lemma.pos}`} 
                     </p>
                   </div>
                   {/*
@@ -112,7 +112,7 @@ export async function LexiconTable({
                     <i>{lemma.entry}</i>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {partsOfSpeech.get(lemma.pos) || `Unknown part of speech: ${lemma.pos}`}
+                    {partsOfSpeech.get(lemma.pos)?.full || `Unknown part of speech: ${lemma.pos}`}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <ONPLink id={lemma.linkonp}/>
@@ -171,7 +171,7 @@ export async function FormsTable({
                         <div className="px-8 font-mono text-xs">{prettifyMorph(form.pos, form.morph)}</div>
                         <div className="text-right">
                           <LemmaLink id={form.lemmaid} label={form.entry}/>{", "}
-                          {form.pos}
+                          <span className="text-xs">{partsOfSpeech.get(form.pos)?.short}</span>
                         </div>
                       </div>
                     </div>
@@ -228,7 +228,7 @@ export async function FormsTable({
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <LemmaLink id={form.lemmaid} label={form.entry}/>,{' '}
-                    {form.pos}
+                    <span className="text-xs">{partsOfSpeech.get(form.pos)?.short}</span>
                   </td>
                 </tr>
               ))}
