@@ -172,7 +172,7 @@ export async function FormsTable({
                       </div>
                       <div className="w-full flex justify-between items-center">
                         <div className="px-8 font-mono text-xs">{prettifyMorph(form.pos, form.morph)}</div>
-                        <div>
+                        <div className="text-right">
                           <LemmaLink id={form.lemmaid} label={form.entry}/>{", "}
                           {form.pos}
                         </div>
